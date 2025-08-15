@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Contributions - Gitam Student Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="app-header">
+        <h1 class="logo">Gitam Student Portal</h1>
+        <div class="header-buttons">
+            <span id="headerName"></span>
+            <span id="headerEmail"></span>
+            <button id="logoutButton" class="btn-secondary">Logout</button>
+        </div>
+    </header>
+
+    <div class="container animated wide">
+        <div class="dashboard-content">
+            <h2>Your Contributions</h2>
+            <div id="contributionsList">
+                </div>
+            <p id="noContributions" class="message success" style="display:none;">
+                You have not made any contributions yet.
+            </p>
+            <div class="dashboard-buttons">
+                <button class="btn-secondary" onclick="window.location.href='dashboard.html'">Back to Dashboard</button>
+            </div>
+            <button id="deleteAccountButton" class="btn-danger animated">Delete My Account</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

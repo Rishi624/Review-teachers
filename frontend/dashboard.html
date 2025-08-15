@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Gitam Student Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="app-header">
+        <h1 class="logo">Gitam Student Portal</h1>
+        <div class="header-buttons">
+            <span id="headerName"></span>
+            <span id="headerEmail"></span>
+            <button id="logoutButton" class="btn-secondary">Logout</button>
+        </div>
+    </header>
+
+    <div class="container animated wide">
+        <div class="dashboard-content">
+            <h2 id="greetMessage"></h2>
+
+            <div class="search-bar-container">
+                <input type="text" id="teacherSearchInput" placeholder="Enter your teachers email or name">
+                <button id="teacherSearchButton">Search</button>
+            </div>
+
+            <div class="dashboard-buttons">
+                <button id="yourContributionsButton" class="animated">Your Contributions</button>
+                <button id="addContributionsButton" class="animated">Do Contributions</button>
+                <button id="seeAllContributionsButton" class="animated">See All Contributions</button>
+            </div>
+
+            <p id="message" class="message"></p>
+
+            <div id="searchResults" style="display: none;" class="animated">
+                <div id="searchResultsContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

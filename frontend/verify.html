@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Email - Gitam Student Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container animated">
+        <h2>Verify Your Email</h2>
+        <p>A 6-digit verification code has been sent to your email address.</p>
+        <form id="verifyForm">
+            <div class="form-group">
+                <label for="email">Your Gitam Email:</label>
+                <input type="email" id="email" name="email" required placeholder="your.name@student.gitam.edu">
+            </div>
+            <div class="form-group">
+                <label for="code">Verification Code:</label>
+                <input type="text" id="code" name="code" required maxlength="6" pattern="\d{6}" title="Please enter a 6-digit code">
+            </div>
+            <button type="submit">Verify Email</button>
+        </form>
+        <p id="message" class="message"></p>
+        <p>Didn't receive the code? Try <a href="signup.html" class="link">registering again</a>.</p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
