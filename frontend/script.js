@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchResultsDiv = document.getElementById('searchResults');
     const searchResultsContentDiv = document.getElementById('searchResultsContent');
 
-    const backendUrl = 'http://localhost:5000';
+    const backendUrl = 'https://review-teachers.onrender.com';
 
     const displayMessage = (message, type) => {
         if (messageDisplay) {
