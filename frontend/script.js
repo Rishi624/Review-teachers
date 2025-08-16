@@ -41,12 +41,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!token) return;
 
         try {
-            const response = await fetch(`${backendUrl}/api/contributions/me`, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                },
-            });
+    const response = await fetch('https://review-teachers.onrender.com/api/contributions/me', {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
+    });
 
             const contributions = await response.json();
             
@@ -114,11 +114,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             try {
-                const response = await fetch(`${backendUrl}/register`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, email, password }),
-                });
+                const response = await fetch('https://review-teachers.onrender.com/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, password }),
+            });
+
                 const data = await response.json();
                 if (response.ok) {
                     displayMessage(data.message, 'success');
@@ -143,11 +144,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = verifyForm.elements.email.value;
             const code = verifyForm.elements.code.value;
             try {
-                const response = await fetch(`${backendUrl}/verify-email`, {
+                const response = await fetch('https://review-teachers.onrender.com/verify-email', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, code }),
-                });
+            });
+
                 const data = await response.json();
                 if (response.ok) {
                     displayMessage(data.message, 'success');
@@ -170,11 +172,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = loginForm.elements.email.value;
             const password = loginForm.elements.password.value;
             try {
-                const response = await fetch(`${backendUrl}/login`, {
+                const response = await fetch('https://review-teachers.onrender.com/verify-email', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password }),
-                });
+                    body: JSON.stringify({ email, code }),
+            });
+
                 const data = await response.json();
                 if (response.ok) {
                     localStorage.setItem('token', data.token);
@@ -206,11 +209,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const rating = contributionForm.elements.rating.value;
             const review = contributionForm.elements.review.value;
             try {
-                const response = await fetch(`${backendUrl}/api/contributions`, {
+                const response = await fetch('https://review-teachers.onrender.com/api/contributions', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
                     body: JSON.stringify({ facultyName, facultyEmail, rating, review }),
-                });
+            });
+
                 const data = await response.json();
                 if (response.ok) {
                     displayMessage(data.message, 'success');
@@ -238,8 +245,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (searchResultsContentDiv) searchResultsContentDiv.innerHTML = 'Loading all contributions...';
 
             try {
-                const response = await fetch(`${backendUrl}/api/contributions/search?query=`);
+                const response = await fetch('https://review-teachers.onrender.com/api/contributions/search?query=');
                 const data = await response.json();
+
 
                 if (response.ok) {
                     if (searchResultsDiv) searchResultsDiv.style.display = 'block';
@@ -281,8 +289,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (searchResultsDiv) searchResultsDiv.style.display = 'none';
             try {
-                const response = await fetch(`${backendUrl}/api/contributions/search?query=${encodeURIComponent(query)}`);
+                const response = await fetch(`https://review-teachers.onrender.com/api/contributions/search?query=${encodeURIComponent(query)}`);
                 const data = await response.json();
+
 
                 if (response.ok) {
                     if (searchResultsDiv && searchResultsContentDiv) {
@@ -334,9 +343,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const token = localStorage.getItem('token');
             if (!token) return displayMessage('You must be logged in to delete your account.', 'error');
             try {
-                const response = await fetch(`${backendUrl}/api/account`, {
-                    method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` },
-                });
+                const response = await fetch('https://review-teachers.onrender.com/api/account', {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+            });
+
                 const data = await response.json();
                 if (response.ok) {
                     displayMessage(data.message, 'success');
