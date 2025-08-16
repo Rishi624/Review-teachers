@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = loginForm.elements.email.value;
             const password = loginForm.elements.password.value;
             try {
-                const response = await fetch(`${backendUrl}/login`, { // <--- THIS LINE WAS WRONG
+                const response = await fetch(`${backendUrl}/login`, { // <--- THIS LINE IS NOW CORRECTED
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password }),
@@ -344,7 +344,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // --- Admin Panel Logic ---
     if (adminAuthForm) {
         adminAuthForm.addEventListener('submit', async (event) => {
             event.preventDefault();
@@ -410,10 +409,8 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
             const userEmailToDelete = deleteUserForm.elements.userEmailToDelete.value;
             const adminAuthPassword = document.getElementById('adminAuthPassword').value;
-
             const isConfirmed = confirm(`Are you sure you want to delete user ${userEmailToDelete}? This is permanent.`);
             if (!isConfirmed) return;
-
             try {
                 const response = await fetch(`${backendUrl}/api/admin/delete`, {
                     method: 'POST',
@@ -442,10 +439,8 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
             const contributionIdToDelete = deleteContributionForm.elements.contributionIdToDelete.value;
             const adminAuthPassword = document.getElementById('adminAuthPassword').value;
-
             const isConfirmed = confirm(`Are you sure you want to delete contribution ${contributionIdToDelete}? This is permanent.`);
             if (!isConfirmed) return;
-
             try {
                 const response = await fetch(`${backendUrl}/api/admin/delete`, {
                     method: 'POST',
