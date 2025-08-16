@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const deleteAccountButton = document.getElementById('deleteAccountButton');
     const adminForm = document.getElementById('adminForm');
 
-    // Dashboard specific elements
     const headerNameSpan = document.getElementById('headerName');
     const headerEmailSpan = document.getElementById('headerEmail');
     const greetMessage = document.getElementById('greetMessage');
@@ -15,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const feedbackButton = document.getElementById('feedbackButton');
     const seeAllContributionsButton = document.getElementById('seeAllContributionsButton');
 
-    // Contributions specific elements
     const contributionForm = document.getElementById('contributionForm');
     const contributionsListDiv = document.getElementById('contributionsList');
     const noContributionsP = document.getElementById('noContributions');
@@ -41,12 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!token) return;
 
         try {
-    const response = await fetch('https://review-teachers.onrender.com/api/contributions/me', {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${token}`
-        },
-    });
+            const response = await fetch(`${backendUrl}/api/contributions/me`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+            });
 
             const contributions = await response.json();
             
@@ -114,12 +112,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             try {
-                const response = await fetch('https://review-teachers.onrender.com/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, email, password }),
-            });
-
+                const response = await fetch(`${backendUrl}/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password }),
+                });
                 const data = await response.json();
                 if (response.ok) {
                     displayMessage(data.message, 'success');
@@ -144,12 +141,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = verifyForm.elements.email.value;
             const code = verifyForm.elements.code.value;
             try {
-                const response = await fetch('https://review-teachers.onrender.com/verify-email', {
+                const response = await fetch(`${backendUrl}/verify-email`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, code }),
-            });
-
+                });
                 const data = await response.json();
                 if (response.ok) {
                     displayMessage(data.message, 'success');
@@ -172,12 +168,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = loginForm.elements.email.value;
             const password = loginForm.elements.password.value;
             try {
-                const response = await fetch('https://review-teachers.onrender.com/verify-email', {
+                const response = await fetch(`${backendUrl}/login`, { // <--- THIS LINE WAS WRONG
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, code }),
-            });
-
+                    body: JSON.stringify({ email, password }),
+                });
                 const data = await response.json();
                 if (response.ok) {
                     localStorage.setItem('token', data.token);
@@ -209,15 +204,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const rating = contributionForm.elements.rating.value;
             const review = contributionForm.elements.review.value;
             try {
-                const response = await fetch('https://review-teachers.onrender.com/api/contributions', {
+                const response = await fetch(`${backendUrl}/api/contributions`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                     body: JSON.stringify({ facultyName, facultyEmail, rating, review }),
-            });
-
+                });
                 const data = await response.json();
                 if (response.ok) {
                     displayMessage(data.message, 'success');
@@ -243,12 +234,9 @@ document.addEventListener('DOMContentLoaded', () => {
         seeAllContributionsButton.addEventListener('click', async () => {
             const searchResultsContentDiv = document.getElementById('searchResultsContent');
             if (searchResultsContentDiv) searchResultsContentDiv.innerHTML = 'Loading all contributions...';
-
             try {
-                const response = await fetch('https://review-teachers.onrender.com/api/contributions/search?query=');
+                const response = await fetch(`${backendUrl}/api/contributions/search?query=`);
                 const data = await response.json();
-
-
                 if (response.ok) {
                     if (searchResultsDiv) searchResultsDiv.style.display = 'block';
                     searchResultsContentDiv.innerHTML = `
@@ -278,9 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    if (feedbackButton) {
-        feedbackButton.addEventListener('click', () => { alert('Feedback functionality coming soon!'); });
-    }
+
     if (teacherSearchButton) {
         teacherSearchButton.addEventListener('click', async () => {
             const query = teacherSearchInput.value;
@@ -289,10 +275,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (searchResultsDiv) searchResultsDiv.style.display = 'none';
             try {
-                const response = await fetch(`https://review-teachers.onrender.com/api/contributions/search?query=${encodeURIComponent(query)}`);
+                const response = await fetch(`${backendUrl}/api/contributions/search?query=${encodeURIComponent(query)}`);
                 const data = await response.json();
-
-
                 if (response.ok) {
                     if (searchResultsDiv && searchResultsContentDiv) {
                         searchResultsDiv.style.display = 'block';
@@ -321,7 +305,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         searchResultsContentDiv.innerHTML = `<p class="message error">${data.message || 'Search failed.'}</p>`;
                     }
                 }
-
             } catch (error) {
                 console.error('Error during search:', error);
                 displayMessage('An error occurred while searching. Please try again later.', 'error');
@@ -343,13 +326,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const token = localStorage.getItem('token');
             if (!token) return displayMessage('You must be logged in to delete your account.', 'error');
             try {
-                const response = await fetch('https://review-teachers.onrender.com/api/account', {
-                    method: 'DELETE',
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    },
-            });
-
+                const response = await fetch(`${backendUrl}/api/account`, {
+                    method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` },
+                });
                 const data = await response.json();
                 if (response.ok) {
                     displayMessage(data.message, 'success');
@@ -361,6 +340,131 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (error) {
                 console.error('Error deleting account:', error);
                 displayMessage('An error occurred while deleting your account.', 'error');
+            }
+        });
+    }
+    
+    // --- Admin Panel Logic ---
+    if (adminAuthForm) {
+        adminAuthForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const adminAuthPassword = adminAuthForm.elements.adminAuthPassword.value;
+            try {
+                const response = await fetch(`${backendUrl}/api/admin/auth`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ adminPassword: adminAuthPassword }),
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    authMessageP.textContent = 'Authentication successful!';
+                    authMessageP.className = 'message success';
+                    setTimeout(() => {
+                        passwordGateDiv.style.display = 'none';
+                        adminPanelDiv.style.display = 'block';
+                    }, 1000);
+                } else {
+                    authMessageP.textContent = data.message || 'Authentication failed.';
+                    authMessageP.className = 'message error';
+                }
+            } catch (error) {
+                console.error('Admin auth error:', error);
+                authMessageP.textContent = 'An error occurred during authentication.';
+                authMessageP.className = 'message error';
+            }
+        });
+    }
+
+    if (viewAllContributionsButton) {
+        viewAllContributionsButton.addEventListener('click', async () => {
+            allContributionsListDiv.innerHTML = 'Loading all contributions...';
+            try {
+                const response = await fetch(`${backendUrl}/api/contributions/all`);
+                const contributions = await response.json();
+                if (response.ok) {
+                    if (contributions.length > 0) {
+                        allContributionsListDiv.innerHTML = contributions.map(contrib => `
+                            <div class="contribution-card animated">
+                                <h3>${contrib.facultyName}</h3>
+                                <p><strong>User Email:</strong> ${contrib.user.email}</p>
+                                <p><strong>Rating:</strong> <span class="rating">${'★'.repeat(contrib.rating)}</span></p>
+                                <p><strong>Review:</strong> ${contrib.review}</p>
+                                <p style="font-size: 0.8em; color: #777;"><strong>Contribution ID:</strong> ${contrib._id}</p>
+                            </div>
+                        `).join('');
+                    } else {
+                        allContributionsListDiv.innerHTML = '<p class="message success">No contributions have been made yet.</p>';
+                    }
+                } else {
+                    allContributionsListDiv.innerHTML = `<p class="message error">${contributions.message || 'Failed to load contributions.'}</p>`;
+                }
+            } catch (error) {
+                console.error('Error fetching all contributions:', error);
+                allContributionsListDiv.innerHTML = `<p class="message error">An error occurred while fetching contributions.</p>`;
+            }
+        });
+    }
+
+    if (deleteUserForm) {
+        deleteUserForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const userEmailToDelete = deleteUserForm.elements.userEmailToDelete.value;
+            const adminAuthPassword = document.getElementById('adminAuthPassword').value;
+
+            const isConfirmed = confirm(`Are you sure you want to delete user ${userEmailToDelete}? This is permanent.`);
+            if (!isConfirmed) return;
+
+            try {
+                const response = await fetch(`${backendUrl}/api/admin/delete`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ adminPassword: adminAuthPassword, userEmailToDelete }),
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    adminMessageP.textContent = data.message;
+                    adminMessageP.className = 'message success';
+                    deleteUserForm.reset();
+                } else {
+                    adminMessageP.textContent = data.message || 'Deletion failed.';
+                    adminMessageP.className = 'message error';
+                }
+            } catch (error) {
+                console.error('User deletion error:', error);
+                adminMessageP.textContent = 'An error occurred during user deletion.';
+                adminMessageP.className = 'message error';
+            }
+        });
+    }
+
+    if (deleteContributionForm) {
+        deleteContributionForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const contributionIdToDelete = deleteContributionForm.elements.contributionIdToDelete.value;
+            const adminAuthPassword = document.getElementById('adminAuthPassword').value;
+
+            const isConfirmed = confirm(`Are you sure you want to delete contribution ${contributionIdToDelete}? This is permanent.`);
+            if (!isConfirmed) return;
+
+            try {
+                const response = await fetch(`${backendUrl}/api/admin/delete`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ adminPassword: adminAuthPassword, contributionIdToDelete }),
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    adminMessageP.textContent = data.message;
+                    adminMessageP.className = 'message success';
+                    deleteContributionForm.reset();
+                } else {
+                    adminMessageP.textContent = data.message || 'Deletion failed.';
+                    adminMessageP.className = 'message error';
+                }
+            } catch (error) {
+                console.error('Contribution deletion error:', error);
+                adminMessageP.textContent = 'An error occurred during contribution deletion.';
+                adminMessageP.className = 'message error';
             }
         });
     }
