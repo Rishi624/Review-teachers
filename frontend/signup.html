@@ -33,7 +33,8 @@
     display: flex;
     overflow: hidden;
     box-shadow: 0 4px 32px rgba(44, 24, 128, 0.15);
-    min-height: 540px;   /* same as login */
+    min-height: 540px;
+    max-height: 540px; /* Fixed height to match login */
   }
 
   /* Left Side (Form) */
@@ -49,27 +50,27 @@
   .logo {
     font-weight: bold;
     font-size: 20px;
-    margin-bottom: 28px;
+    margin-bottom: 20px; /* Reduced from 28px */
     color: #6C63FF;
     letter-spacing: 0.5px;
   }
 
   .left h1 {
     font-size: 32px;
-    margin-bottom: 10px;
+    margin-bottom: 8px; /* Reduced from 10px */
     font-weight: 700;
     color: #181818;
     letter-spacing: 0.5px;
   }
 
   .left p {
-    margin-bottom: 28px;
+    margin-bottom: 20px; /* Reduced from 28px */
     color: #888;
     font-size: 16px;
   }
 
   .form-group {
-    margin-bottom: 18px;
+    margin-bottom: 14px; /* Reduced from 18px */
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -77,14 +78,14 @@
 
   .form-group label {
     font-size: 15px;
-    margin-bottom: 7px;
+    margin-bottom: 6px; /* Reduced from 7px */
     color: #333;
     font-weight: 500;
   }
 
   .form-group input {
     width: 100%;
-    padding: 13px 16px;
+    padding: 12px 16px; /* Reduced from 13px */
     border: 1.5px solid #e0e0e0;
     border-radius: 10px;
     font-size: 15px;
@@ -106,7 +107,7 @@
     font-weight: 600;
     cursor: pointer;
     transition: background 0.3s;
-    margin-top: 12px;
+    margin-top: 10px; /* Reduced from 12px */
     font-size: 18px;
   }
 
@@ -115,7 +116,7 @@
   }
 
   .signup {
-    margin-top: 18px;
+    margin-top: 14px; /* Reduced from 18px */
     text-align: center;
     font-size: 15px;
     color: #444;
@@ -133,7 +134,7 @@
   }
 
   .message {
-    margin-top: 12px;
+    margin-top: 10px; /* Reduced from 12px */
     font-size: 14px;
     color: red;
     text-align: center;
@@ -175,6 +176,7 @@
       flex-direction: column-reverse;
       border-radius: 18px;
       min-height: 0;
+      max-height: none; /* Remove height restriction on mobile */
     }
 
     .left {
