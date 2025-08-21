@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const logoutButton = document.getElementById('logoutButton');
     const deleteAccountButton = document.getElementById('deleteAccountButton');
     const adminForm = document.getElementById('adminForm');
+    const adminAuthForm = document.getElementById('adminAuthForm');
 
     const headerNameSpan = document.getElementById('headerName');
     const headerEmailSpan = document.getElementById('headerEmail');
@@ -168,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = loginForm.elements.email.value;
             const password = loginForm.elements.password.value;
             try {
-                const response = await fetch(`${backendUrl}/login`, { // <--- THIS LINE IS NOW CORRECTED
+                const response = await fetch(`${backendUrl}/login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password }),
@@ -234,6 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
         seeAllContributionsButton.addEventListener('click', async () => {
             const searchResultsContentDiv = document.getElementById('searchResultsContent');
             if (searchResultsContentDiv) searchResultsContentDiv.innerHTML = 'Loading all contributions...';
+
             try {
                 const response = await fetch(`${backendUrl}/api/contributions/search?query=`);
                 const data = await response.json();
