@@ -9,463 +9,1006 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
   body {
-    background: linear-gradient(120deg, #6C63FF 0%, #a46bff 100%);
-    background-image: url('https://i.postimg.cc/6QRPd6QY/1000008385-Picsart-Ai-Image-Enhancer.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
     min-height: 100vh;
-    padding: 20px;
+    display: flex;
   }
 
-  /* Header */
-  .header {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 255, 0.9) 100%);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-    padding: 25px 35px;
-    margin-bottom: 40px;
-    box-shadow: 0 8px 32px rgba(44, 24, 128, 0.1);
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 280px;
+    background: rgba(45, 55, 72, 0.95);
+    backdrop-filter: blur(20px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto 40px auto;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 1000;
+  }
+
+  .sidebar-header {
+    padding: 25px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .logo {
-    font-weight: bold;
-    font-size: 28px;
-    background: linear-gradient(135deg, #6C63FF 0%, #8B7FFF 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    letter-spacing: 0.5px;
+    font-weight: 700;
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 10px;
   }
 
-  .user-info {
+  .user-info-sidebar {
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 12px;
+    margin-top: 15px;
   }
 
-  .user-details {
-    text-align: right;
-  }
-
-  .user-name {
+  .user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
     font-weight: 600;
-    color: #2d3748;
-    font-size: 18px;
+    font-size: 16px;
   }
 
-  .user-email {
+  .user-details-sidebar {
+    flex: 1;
+  }
+
+  .user-name-sidebar {
+    font-weight: 600;
+    color: #fff;
     font-size: 14px;
-    color: #4a5568;
-    margin-top: 2px;
+    margin-bottom: 2px;
+  }
+
+  .user-email-sidebar {
+    font-size: 12px;
+    color: #a0aec0;
+  }
+
+  /* Navigation */
+  .nav-section {
+    padding: 20px;
+    flex: 1;
+  }
+
+  .nav-title {
+    font-size: 12px;
+    color: #a0aec0;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+  }
+
+  .nav-items {
+    list-style: none;
+  }
+
+  .nav-item {
+    margin-bottom: 8px;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    color: #cbd5e0;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .nav-link:hover, .nav-link.active {
+    background: rgba(102, 126, 234, 0.2);
+    color: #fff;
+    transform: translateX(4px);
+  }
+
+  .nav-icon {
+    margin-right: 12px;
+    font-size: 16px;
+  }
+
+  .nav-count {
+    margin-left: auto;
+    background: rgba(102, 126, 234, 0.3);
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  /* Logout Button */
+  .logout-section {
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .logout-btn {
+    width: 100%;
     background: linear-gradient(135deg, #dc3545 0%, #e74c3c 100%);
     color: white;
     border: none;
-    padding: 12px 24px;
-    border-radius: 12px;
+    padding: 12px;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
     transition: all 0.3s;
     font-size: 14px;
-    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
   }
 
   .logout-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
   }
 
   /* Main Content */
-  .main-content {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  /* Welcome & Search Combined Section */
-  .main-section {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(248, 250, 255, 0.85) 100%);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 25px;
-    padding: 50px;
-    margin-bottom: 50px;
-    box-shadow: 0 10px 40px rgba(44, 24, 128, 0.1);
-    text-align: center;
-  }
-
-  .welcome-title {
-    font-size: 36px;
-    font-weight: 700;
-    background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 15px;
-  }
-
-  .welcome-subtitle {
-    font-size: 18px;
-    color: #4a5568;
-    margin-bottom: 40px;
-  }
-
-  .search-container {
-    display: flex;
-    gap: 15px;
-    max-width: 500px;
-    margin: 0 auto 40px auto;
-  }
-
-  .search-input {
+  .main-container {
+    margin-left: 280px;
     flex: 1;
-    padding: 18px 24px;
-    border: 1.5px solid rgba(108, 99, 255, 0.2);
-    border-radius: 15px;
-    font-size: 16px;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s;
-    color: #2d3748;
-  }
-
-  .search-input:focus {
-    border-color: #6C63FF;
-    outline: none;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
-  }
-
-  .search-input::placeholder {
-    color: #718096;
-  }
-
-  .search-btn {
-    padding: 18px 32px;
-    background: linear-gradient(135deg, #6C63FF 0%, #8B7FFF 100%);
-    color: white;
-    border: none;
-    border-radius: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-size: 16px;
-    box-shadow: 0 4px 20px rgba(108, 99, 255, 0.3);
-  }
-
-  .search-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(108, 99, 255, 0.4);
-  }
-
-  /* Dashboard Actions - Simplified */
-  .dashboard-actions {
     display: flex;
-    gap: 30px;
-    justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: column;
+    min-height: 100vh;
   }
 
-  .action-btn {
-    background: linear-gradient(135deg, #6C63FF 0%, #8B7FFF 100%);
-    color: white;
-    border: none;
-    padding: 18px 35px;
-    border-radius: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-size: 16px;
-    box-shadow: 0 6px 25px rgba(108, 99, 255, 0.3);
-    min-width: 180px;
-  }
-
-  .action-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 35px rgba(108, 99, 255, 0.4);
-  }
-
-  /* Latest Contributions Section */
-  .latest-contributions {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(248, 250, 255, 0.85) 100%);
+  .main-header {
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 25px;
-    padding: 40px;
-    margin-bottom: 30px;
-    box-shadow: 0 10px 40px rgba(44, 24, 128, 0.1);
-  }
-
-  .latest-contributions h2 {
-    background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 25px;
-    font-size: 28px;
-    text-align: center;
-  }
-
-  .contributions-container {
-    max-height: 400px;
-    overflow-y: auto;
-  }
-
-  .contribution-card {
-    background: linear-gradient(135deg, rgba(248, 250, 255, 0.8) 0%, rgba(237, 242, 255, 0.8) 100%);
-    backdrop-filter: blur(10px);
-    padding: 20px;
-    border-radius: 15px;
-    margin-bottom: 15px;
-    border-left: 5px solid #6C63FF;
-    box-shadow: 0 4px 20px rgba(108, 99, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-  }
-
-  .contribution-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 20px 30px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    justify-content: space-between;
   }
 
-  .faculty-name {
-    font-weight: 600;
+  .header-title {
+    font-size: 24px;
+    font-weight: 700;
     color: #2d3748;
-    font-size: 16px;
   }
 
-  .rating {
-    color: #ffc107;
-    font-size: 18px;
+  .search-header {
+    display: flex;
+    gap: 12px;
+    max-width: 400px;
+    flex: 1;
+    margin: 0 30px;
   }
 
-  .contribution-text {
-    color: #4a5568;
-    line-height: 1.6;
-    margin-bottom: 10px;
+  .search-input-header {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    background: white;
+    transition: all 0.3s;
+  }
+
+  .search-input-header:focus {
+    border-color: #667eea;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+
+  .search-btn-header {
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
     font-size: 14px;
   }
 
-  .contribution-meta {
+  .search-btn-header:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  }
+
+  /* Content Area */
+  .content-area {
+    flex: 1;
+    padding: 30px;
+    background: rgba(247, 250, 252, 0.8);
+    backdrop-filter: blur(10px);
+  }
+
+  /* Stats Cards */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .stat-card {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  }
+
+  .stat-number {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 14px;
+    color: #718096;
+    font-weight: 500;
+  }
+
+  /* Reviews Container */
+  .reviews-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+  }
+
+  .reviews-header {
+    padding: 24px 30px;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: between;
+  }
+
+  .reviews-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 4px;
+  }
+
+  .reviews-subtitle {
+    font-size: 14px;
+    color: #718096;
+  }
+
+  .reviews-content {
+    max-height: 500px;
+    overflow-y: auto;
+  }
+
+  /* Review Cards */
+  .review-item {
+    padding: 24px 30px;
+    border-bottom: 1px solid #f7fafc;
+    transition: all 0.3s ease;
+  }
+
+  .review-item:hover {
+    background: #f7fafc;
+  }
+
+  .review-item:last-child {
+    border-bottom: none;
+  }
+
+  .review-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .reviewer-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    margin-right: 12px;
+  }
+
+  .reviewer-info {
+    flex: 1;
+  }
+
+  .reviewer-name {
+    font-weight: 600;
+    color: #2d3748;
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+
+  .review-date {
     font-size: 12px;
     color: #718096;
   }
 
-  .no-contributions {
-    text-align: center;
-    color: #718096;
-    font-style: italic;
-    padding: 40px 20px;
+  .rating-stars {
+    display: flex;
+    gap: 2px;
+    margin-left: auto;
+  }
+
+  .star {
+    color: #ffd700;
+    font-size: 16px;
+  }
+
+  .review-text {
+    color: #4a5568;
+    line-height: 1.6;
+    font-size: 14px;
+    margin-top: 12px;
+  }
+
+  .faculty-tag {
+    display: inline-block;
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 12px;
+  }
+
+  /* Action Buttons */
+  .action-buttons {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+
+  .action-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
   }
 
   /* Search Results */
   .search-results {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(248, 250, 255, 0.85) 100%);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 25px;
-    padding: 40px;
-    box-shadow: 0 10px 40px rgba(44, 24, 128, 0.1);
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    margin-top: 20px;
     display: none;
-    margin-top: 30px;
   }
 
-  .search-results h3 {
-    background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 25px;
-    font-size: 28px;
+  /* No Results */
+  .no-results {
     text-align: center;
-  }
-
-  .review-card {
-    background: linear-gradient(135deg, rgba(248, 250, 255, 0.8) 0%, rgba(237, 242, 255, 0.8) 100%);
-    backdrop-filter: blur(10px);
-    padding: 25px;
-    border-radius: 15px;
-    margin-bottom: 20px;
-    border-left: 5px solid #6C63FF;
-    box-shadow: 0 4px 20px rgba(108, 99, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-  }
-
-  .review-card .reviewer-name {
-    font-weight: 600;
-    color: #2d3748;
-    margin-bottom: 8px;
-    font-size: 16px;
-  }
-
-  .review-card .review-text {
-    color: #4a5568;
-    line-height: 1.7;
-    margin-bottom: 12px;
-    font-size: 15px;
-  }
-
-  .review-card .review-meta {
-    font-size: 13px;
+    padding: 60px 20px;
     color: #718096;
   }
 
-  .message {
-    margin-top: 25px;
-    padding: 18px;
-    border-radius: 12px;
-    text-align: center;
-    font-weight: 600;
-    backdrop-filter: blur(10px);
+  .no-results-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: 0.5;
   }
 
-  .message.error {
-    background: linear-gradient(135deg, rgba(248, 215, 218, 0.9) 0%, rgba(245, 198, 203, 0.9) 100%);
-    color: #721c24;
-    border: 1px solid rgba(241, 174, 181, 0.5);
+  /* Loading Spinner */
+  .loading-spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #667eea;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 16px;
   }
 
-  .message.success {
-    background: linear-gradient(135deg, rgba(212, 237, 218, 0.9) 0%, rgba(195, 230, 203, 0.9) 100%);
-    color: #155724;
-    border: 1px solid rgba(195, 230, 203, 0.5);
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
 
   /* Responsive Design */
   @media (max-width: 768px) {
-    .header {
-      flex-direction: column;
-      gap: 20px;
-      text-align: center;
-      padding: 20px 25px;
+    .sidebar {
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
     }
 
-    .user-info {
-      flex-direction: column;
-      gap: 15px;
+    .sidebar.open {
+      transform: translateX(0);
     }
 
-    .main-section, .latest-contributions {
-      padding: 35px 25px;
+    .main-container {
+      margin-left: 0;
     }
 
-    .welcome-title {
-      font-size: 28px;
+    .main-header {
+      padding: 15px 20px;
     }
 
-    .search-container {
-      flex-direction: column;
-      max-width: 100%;
+    .search-header {
+      margin: 0 15px;
+      max-width: none;
     }
 
-    .dashboard-actions {
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .action-btn {
-      width: 100%;
-      max-width: 280px;
-    }
-
-    .contribution-header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 5px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    body {
-      padding: 15px;
-    }
-
-    .header {
+    .content-area {
       padding: 20px;
     }
 
-    .main-section,
-    .latest-contributions,
-    .search-results {
-      padding: 25px 20px;
+    .stats-grid {
+      grid-template-columns: 1fr;
     }
 
-    .welcome-title {
-      font-size: 24px;
+    .action-buttons {
+      flex-direction: column;
     }
 
-    .welcome-subtitle {
-      font-size: 16px;
+    .review-item {
+      padding: 20px;
+    }
+  }
+
+  /* Mobile Menu Button */
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #2d3748;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .mobile-menu-btn {
+      display: block;
     }
   }
 </style>
 </head>
 <body>
-    <!-- Header -->
-    <div class="header">
-        <div class="logo">Lecturers Reviews</div>
-        <div class="user-info">
-            <div class="user-details">
-                <div class="user-name" id="headerName">Loading...</div>
-                <div class="user-email" id="headerEmail">loading...</div>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">Reviews Dashboard</div>
+            <div class="user-info-sidebar">
+                <div class="user-avatar" id="userAvatar">L</div>
+                <div class="user-details-sidebar">
+                    <div class="user-name-sidebar" id="sidebarName">Loading...</div>
+                    <div class="user-email-sidebar" id="sidebarEmail">loading...</div>
+                </div>
             </div>
-            <button id="logoutButton" class="logout-btn">Logout</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-title">Reviews</div>
+            <ul class="nav-items">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" data-section="dashboard">
+                        <span class="nav-icon">📊</span>
+                        Dashboard
+                        <span class="nav-count" id="dashboardCount">0</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="your-reviews">
+                        <span class="nav-icon">📝</span>
+                        Your Reviews
+                        <span class="nav-count" id="yourReviewsCount">0</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="all-reviews">
+                        <span class="nav-icon">👥</span>
+                        All Reviews
+                        <span class="nav-count" id="allReviewsCount">0</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="add-review">
+                        <span class="nav-icon">➕</span>
+                        Add Review
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="logout-section">
+            <button id="logoutButton" class="logout-btn">
+                <span style="margin-right: 8px;"></span>
+                Logout
+            </button>
         </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <!-- Main Section - Welcome + Search + Actions -->
-        <div class="main-section">
-            <h1 class="welcome-title" id="greetMessage">Welcome to Your Dashboard!</h1>
-            <p class="welcome-subtitle">Search for faculty reviews and manage your contributions</p>
-            
-            <!-- Search -->
-            <div class="search-container">
-                <input type="text" id="teacherSearchInput" class="search-input" placeholder="Search faculty by name or email...">
-                <button id="teacherSearchButton" class="search-btn">Search</button>
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Header -->
+        <div class="main-header">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <h1 class="header-title">Faculty Reviews</h1>
+            <div class="search-header">
+                <input type="text" id="teacherSearchInput" class="search-input-header" placeholder="Search faculty...">
+                <button id="teacherSearchButton" class="search-btn-header">Search</button>
             </div>
-
-            <!-- Actions -->
-            <div class="dashboard-actions">
-                <button id="yourContributionsButton" class="action-btn">📝 Your Reviews</button>
-                <button id="addContributionsButton" class="action-btn">➕ Add Review</button>
-                <button id="seeAllContributionsButton" class="action-btn">👥 Browse All</button>
-            </div>
+            <div style="width: 100px;"></div> <!-- Spacer for balance -->
         </div>
 
-        <!-- Latest Contributions Section -->
-        <div id="latestContributions" class="latest-contributions">
-            <h2>📋 Latest Contributions</h2>
-            <div id="latestContributionsContent" class="contributions-container">
-                <div class="no-contributions">Loading latest contributions...</div>
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalReviews">0</div>
+                    <div class="stat-label">Total Reviews</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="yourContributions">0</div>
+                    <div class="stat-label">Your Contributions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="avgRating">0.0</div>
+                    <div class="stat-label">Average Rating</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="totalFaculty">0</div>
+                    <div class="stat-label">Faculty Reviewed</div>
+                </div>
+            </div>
+
+            <!-- Reviews Container -->
+            <div class="reviews-container" id="mainReviewsContainer">
+                <div class="reviews-header">
+                    <div>
+                        <div class="reviews-title" id="reviewsContainerTitle">Latest Reviews</div>
+                        <div class="reviews-subtitle" id="reviewsContainerSubtitle">Recent faculty reviews from the community</div>
+                    </div>
+                </div>
+                <div class="reviews-content" id="mainReviewsContent">
+                    <div class="no-results">
+                        <div class="no-results-icon"></div>
+                        <div>Loading latest reviews...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Results -->
+            <div id="searchResults" class="search-results">
+                <div class="reviews-header">
+                    <div>
+                        <div class="reviews-title">Search Results</div>
+                        <div class="reviews-subtitle">Faculty reviews matching your search</div>
+                    </div>
+                </div>
+                <div id="searchResultsContent" class="reviews-content"></div>
             </div>
         </div>
-
-        <!-- Search Results -->
-        <div id="searchResults" class="search-results">
-            <div id="searchResultsContent"></div>
-        </div>
-
-        <!-- Message Display -->
-        <p id="message" class="message" style="display: none;"></p>
     </div>
 
     <script src="script.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('open');
+        });
+
+        // Initialize user avatar and info
+        function updateUserInfo() {
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            const sidebarName = document.getElementById('sidebarName');
+            const sidebarEmail = document.getElementById('sidebarEmail');
+            const userAvatar = document.getElementById('userAvatar');
+            
+            if (user.name) {
+                sidebarName.textContent = user.name;
+                sidebarEmail.textContent = user.email;
+                userAvatar.textContent = user.name.charAt(0).toUpperCase();
+            }
+        }
+
+        // Add navigation functionality to sidebar links
+        function setupSidebarNavigation() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    
+                    const section = this.getAttribute('data-section');
+                    
+                    switch(section) {
+                        case 'dashboard':
+                            showDashboard();
+                            break;
+                        case 'your-reviews':
+                            showYourReviews();
+                            break;
+                        case 'all-reviews':
+                            showAllReviews();
+                            break;
+                        case 'add-review':
+                            window.location.href = 'add-contribution.html';
+                            break;
+                    }
+                });
+            });
+        }
+
+        // Show dashboard view
+        function showDashboard() {
+            document.getElementById('searchResults').style.display = 'none';
+            document.getElementById('mainReviewsContainer').style.display = 'block';
+            document.getElementById('reviewsContainerTitle').textContent = 'Latest Reviews';
+            document.getElementById('reviewsContainerSubtitle').textContent = 'Recent faculty reviews from the community';
+            loadDashboardStats();
+        }
+
+        // Show your reviews
+        async function showYourReviews() {
+            const token = localStorage.getItem('token');
+            document.getElementById('searchResults').style.display = 'none';
+            document.getElementById('mainReviewsContainer').style.display = 'block';
+            document.getElementById('reviewsContainerTitle').textContent = 'Your Reviews';
+            document.getElementById('reviewsContainerSubtitle').textContent = 'All your faculty reviews';
+            
+            const container = document.getElementById('mainReviewsContent');
+            container.innerHTML = '<div class="no-results"><div class="loading-spinner"></div><div>Loading your reviews...</div></div>';
+            
+            try {
+                const response = await fetch('https://review-teachers.onrender.com/api/contributions/me', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const yourReviews = await response.json();
+                
+                if (response.ok) {
+                    if (yourReviews.length === 0) {
+                        container.innerHTML = `
+                            <div class="no-results">
+                                <div class="no-results-icon">✍️</div>
+                                <div>You haven't written any reviews yet</div>
+                                <div style="font-size: 14px; margin-top: 10px; opacity: 0.7;">Start by adding your first review!</div>
+                            </div>
+                        `;
+                    } else {
+                        container.innerHTML = yourReviews.map(review => `
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="reviewer-avatar">${review.user?.name?.charAt(0).toUpperCase() || 'Y'}</div>
+                                    <div class="reviewer-info">
+                                        <div class="reviewer-name">${review.user?.name || 'You'}</div>
+                                        <div class="review-date">${new Date(review.createdAt).toLocaleDateString('en-US', { 
+                                            year: 'numeric', 
+                                            month: 'long', 
+                                            day: 'numeric' 
+                                        })}</div>
+                                    </div>
+                                    <div class="rating-stars">
+                                        ${'★'.repeat(review.rating).split('').map(star => `<span class="star">${star}</span>`).join('')}
+                                    </div>
+                                </div>
+                                <div class="review-text">${review.review}</div>
+                                <div class="faculty-tag">${review.facultyName} (${review.facultyEmail})</div>
+                            </div>
+                        `).join('');
+                    }
+                } else {
+                    container.innerHTML = `
+                        <div class="no-results">
+                            <div class="no-results-icon">❌</div>
+                            <div>Failed to load your reviews</div>
+                            <div style="font-size: 14px; margin-top: 10px; opacity: 0.7;">Please try refreshing the page</div>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error loading your reviews:', error);
+                container.innerHTML = `
+                    <div class="no-results">
+                        <div class="no-results-icon">❌</div>
+                        <div>Failed to load your reviews</div>
+                        <div style="font-size: 14px; margin-top: 10px; opacity: 0.7;">Please check your connection and try again</div>
+                    </div>
+                `;
+            }
+        }
+
+        // Function to show all reviews
+        async function showAllReviews() {
+            document.getElementById('mainReviewsContainer').style.display = 'none';
+            const searchResultsDiv = document.getElementById('searchResults');
+            const searchResultsContent = document.getElementById('searchResultsContent');
+            
+            // Show loading state with spinner
+            searchResultsDiv.style.display = 'block';
+            searchResultsContent.innerHTML = '<div class="no-results"><div class="loading-spinner"></div><div>Loading all reviews...</div></div>';
+            
+            try {
+                const response = await fetch('https://review-teachers.onrender.com/api/contributions/search?query=');
+                const data = await response.json();
+                
+                if (response.ok && data.allReviews) {
+                    const reviewCount = data.allReviews.length;
+                    searchResultsContent.innerHTML = `
+                        <div class="faculty-profile-header">
+                            <div class="faculty-name">All Faculty Reviews</div>
+                            <div class="faculty-email">Community Reviews Database</div>
+                            <div class="faculty-rating">
+                                <span class="rating-text">Total Reviews: ${reviewCount}</span>
+                                <span class="review-count-badge">${reviewCount} reviews</span>
+                            </div>
+                        </div>
+                        ${data.allReviews.map(review => `
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="reviewer-avatar">${review.reviewerName.charAt(0).toUpperCase()}</div>
+                                    <div class="reviewer-info">
+                                        <div class="reviewer-name">${review.reviewerName}</div>
+                                        <div class="review-date">${new Date(review.createdAt).toLocaleDateString('en-US', { 
+                                            year: 'numeric', 
+                                            month: 'long', 
+                                            day: 'numeric' 
+                                        })}</div>
+                                    </div>
+                                    <div class="rating-stars">
+                                        ${'★'.repeat(review.rating).split('').map(star => `<span class="star">${star}</span>`).join('')}
+                                    </div>
+                                </div>
+                                <div class="review-text">${review.review}</div>
+                                <div class="faculty-tag">${review.facultyName} (${review.facultyEmail})</div>
+                            </div>
+                        `).join('')}
+                    `;
+                } else {
+                    searchResultsContent.innerHTML = '<div class="no-results"><div class="no-results-icon">📝</div><div>No reviews found</div></div>';
+                }
+            } catch (error) {
+                console.error('Error loading all reviews:', error);
+                searchResultsContent.innerHTML = '<div class="no-results"><div class="no-results-icon">⚠️</div><div>Failed to load reviews</div></div>';
+            }
+        }
+
+        // Enhanced search functionality
+        document.getElementById('teacherSearchButton').addEventListener('click', async () => {
+            const query = document.getElementById('teacherSearchInput').value.trim();
+            const searchResultsDiv = document.getElementById('searchResults');
+            const searchResultsContent = document.getElementById('searchResultsContent');
+            
+            if (!query) {
+                alert('Please enter a faculty name or email to search.');
+                return;
+            }
+            
+            // Hide main container and show search results
+            document.getElementById('mainReviewsContainer').style.display = 'none';
+            searchResultsDiv.style.display = 'block';
+            searchResultsContent.innerHTML = '<div class="no-results"><div class="loading-spinner"></div><div>Searching for faculty...</div></div>';
+            
+            try {
+                const response = await fetch(`https://review-teachers.onrender.com/api/contributions/search?query=${encodeURIComponent(query)}`);
+                const data = await response.json();
+                
+                if (response.ok && data.facultyName) {
+                    // Single faculty search result
+                    const avgRating = parseFloat(data.averageRating);
+                    searchResultsContent.innerHTML = `
+                        <div class="faculty-profile-header">
+                            <div class="faculty-name">${data.facultyName}</div>
+                            <div class="faculty-email">${data.facultyEmail}</div>
+                            <div class="faculty-rating">
+                                <span class="stars">${'★'.repeat(Math.round(avgRating)).split('').map(star => `<span class="star">${star}</span>`).join('')}</span>
+                                <span class="rating-text">${avgRating}/5.0</span>
+                                <span class="review-count-badge">${data.reviews.length} reviews</span>
+                            </div>
+                        </div>
+                        ${data.reviews.map(review => `
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="reviewer-avatar">${review.reviewerName.charAt(0).toUpperCase()}</div>
+                                    <div class="reviewer-info">
+                                        <div class="reviewer-name">${review.reviewerName}</div>
+                                        <div class="review-date">${new Date(review.createdAt).toLocaleDateString('en-US', { 
+                                            year: 'numeric', 
+                                            month: 'long', 
+                                            day: 'numeric' 
+                                        })}</div>
+                                    </div>
+                                    <div class="rating-stars">
+                                        ${'★'.repeat(review.rating).split('').map(star => `<span class="star">${star}</span>`).join('')}
+                                    </div>
+                                </div>
+                                <div class="review-text">${review.review}</div>
+                                <div class="faculty-tag">${data.facultyName}</div>
+                            </div>
+                        `).join('')}
+                    `;
+                } else {
+                    searchResultsContent.innerHTML = `
+                        <div class="no-results">
+                            <div class="no-results-icon">🔍</div>
+                            <div>No faculty found matching "${query}"</div>
+                            <div style="font-size: 14px; margin-top: 10px; opacity: 0.7;">Try searching with a different name or email</div>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error during search:', error);
+                searchResultsContent.innerHTML = `
+                    <div class="no-results">
+                        <div class="no-results-icon">❌</div>
+                        <div>Search failed</div>
+                        <div style="font-size: 14px; margin-top: 10px; opacity: 0.7;">Please try again later</div>
+                    </div>
+                `;
+            }
+        });
+
+        // Fetch real statistics from backend
+        async function loadDashboardStats() {
+            const backendUrl = 'https://review-teachers.onrender.com';
+            const token = localStorage.getItem('token');
+            
+            try {
+                // Fetch user's contributions
+                const userContribsResponse = await fetch(`${backendUrl}/api/contributions/me`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const userContribs = await userContribsResponse.json();
+                
+                // Fetch all contributions for total stats
+                const allContribsResponse = await fetch(`${backendUrl}/api/contributions/search?query=`);
+                const allContribsData = await allContribsResponse.json();
+                
+                if (userContribsResponse.ok && allContribsResponse.ok) {
+                    const totalReviews = allContribsData.allReviews?.length || 0;
+                    const userContributions = userContribs.length || 0;
+                    
+                    // Calculate average rating
+                    const allRatings = allContribsData.allReviews?.map(r => r.rating) || [];
+                    const avgRating = allRatings.length > 0 
+                        ? (allRatings.reduce((a, b) => a + b, 0) / allRatings.length).toFixed(1)
+                        : '0.0';
+                    
+                    // Calculate unique faculty count
+                    const uniqueFaculty = new Set(allContribsData.allReviews?.map(r => r.facultyEmail) || []).size;
+                    
+                    // Update stats
+                    document.getElementById('totalReviews').textContent = totalReviews;
+                    document.getElementById('yourContributions').textContent = userContributions;
+                    document.getElementById('avgRating').textContent = avgRating;
+                    document.getElementById('totalFaculty').textContent = uniqueFaculty;
+                    
+                    // Update navigation counts
+                    document.getElementById('yourReviewsCount').textContent = userContributions;
+                    document.getElementById('allReviewsCount').textContent = totalReviews;
+                    document.getElementById('dashboardCount').textContent = totalReviews;
+                    
+                    // Load latest reviews for dashboard
+                    loadLatestReviews(allContribsData.allReviews);
+                }
+            } catch (error) {
+                console.error('Error loading dashboard stats:', error);
+                // Show error state
+                document.getElementById('mainReviewsContent').innerHTML = `
+                    <div class="no-results">
+                        <div class="no-results-icon"></div>
+                        <div>Failed to load dashboard data</div>
+                    </div>
+                `;
+            }
+        }
+
+        // Load and display latest reviews (for dashboard view)
+        function loadLatestReviews(reviews) {
+            const container = document.getElementById('mainReviewsContent');
+            
+            if (!reviews || reviews.length === 0) {
+                container.innerHTML = `
+                    <div class="no-results">
+                        <div class="no-results-icon">📚</div>
+                        <div>No reviews available yet</div>
+                        <div style="font-size: 14px; margin-top: 10px; opacity: 0.7;">Be the first to add a review!</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Sort by date and take latest 5
+            const latestReviews = reviews
+                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                .slice(0, 5);
+            
+            container.innerHTML = latestReviews.map(review => `
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">${review.reviewerName.charAt(0).toUpperCase()}</div>
+                        <div class="reviewer-info">
+                            <div class="reviewer-name">${review.reviewerName}</div>
+                            <div class="review-date">${new Date(review.createdAt).toLocaleDateString('en-US', { 
+                                year: 'numeric', 
+                                month: 'long', 
+                                day: 'numeric' 
+                            })}</div>
+                        </div>
+                        <div class="rating-stars">
+                            ${'★'.repeat(review.rating).split('').map(star => `<span class="star">${star}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="review-text">${review.review}</div>
+                    <div class="faculty-tag">${review.facultyName}</div>
+                </div>
+            `).join('');
+        }
+
+        // Initialize dashboard when page loads
+        async function initializeDashboard() {
+            // Check if user is logged in
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            updateUserInfo();
+            setupSidebarNavigation();
+            await loadDashboardStats();
+        }
+
+        // Call initialization
+        initializeDashboard();
+    </script>
 </body>
-</html> 
+</html>

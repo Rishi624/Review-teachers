@@ -225,95 +225,52 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (yourContributionsButton) {
-        yourContributionsButton.addEventListener('click', () => { window.location.href = 'your-contributions.html'; });
-    }
-    if (addContributionsButton) {
-        addContributionsButton.addEventListener('click', () => { window.location.href = 'add-contribution.html'; });
-    }
-    if (seeAllContributionsButton) {
-        seeAllContributionsButton.addEventListener('click', async () => {
-            const searchResultsContentDiv = document.getElementById('searchResultsContent');
-            if (searchResultsContentDiv) searchResultsContentDiv.innerHTML = 'Loading all contributions...';
+    // Connect action buttons to existing functionality
+    document.getElementById('yourContributionsButton').addEventListener('click', () => {
+        window.location.href = 'your-contributions.html';
+    });
 
-            try {
-                const response = await fetch(`${backendUrl}/api/contributions/search?query=`);
-                const data = await response.json();
-                if (response.ok) {
-                    if (searchResultsDiv) searchResultsDiv.style.display = 'block';
-                    searchResultsContentDiv.innerHTML = `
-                        <div class="search-result-header">
-                            <h3>All Contributions</h3>
-                        </div>
-                        <div class="reviews-list">
-                            ${data.allReviews.map(contrib => `
-                                <div class="review-card animated">
-                                    <p><strong>Faculty:</strong> ${contrib.facultyName}</p>
-                                    <p><strong>Email:</strong> ${contrib.facultyEmail}</p>
-                                    <p><strong>Rating:</strong> <span class="rating">${'★'.repeat(contrib.rating)}</span></p>
-                                    <p><strong>Review:</strong> ${contrib.review}</p>
-                                    <p style="font-size: 0.8em; color: #777;"><em>Submitted by: ${contrib.reviewerName} on: ${new Date(contrib.createdAt).toLocaleDateString()}</em></p>
-                                </div>
-                            `).join('')}
-                        </div>
-                    `;
-                } else {
-                    if (searchResultsDiv) searchResultsDiv.style.display = 'block';
-                    searchResultsContentDiv.innerHTML = `<p class="message error">${data.message || 'Search failed.'}</p>`;
-                }
-            } catch (error) {
-                console.error('Error during search:', error);
-                displayMessage('An error occurred while fetching all contributions.', 'error');
-                if (searchResultsDiv) searchResultsDiv.style.display = 'none';
-            }
-        });
-    }
+    document.getElementById('addContributionsButton').addEventListener('click', () => {
+        window.location.href = 'add-contribution.html';
+    });
 
-    if (teacherSearchButton) {
-        teacherSearchButton.addEventListener('click', async () => {
-            const query = teacherSearchInput.value;
-            if (!query) {
-                return displayMessage('Please enter a teacher\'s name or email to search.', 'error');
-            }
-            if (searchResultsDiv) searchResultsDiv.style.display = 'none';
-            try {
-                const response = await fetch(`${backendUrl}/api/contributions/search?query=${encodeURIComponent(query)}`);
-                const data = await response.json();
-                if (response.ok) {
-                    if (searchResultsDiv && searchResultsContentDiv) {
-                        searchResultsDiv.style.display = 'block';
-                        searchResultsContentDiv.innerHTML = `
-                            <div class="search-result-header">
-                                <h3>${data.facultyName}</h3>
-                                <p><strong>Email:</strong> ${data.facultyEmail}</p>
-                                <p><strong>Average Rating:</strong> <span class="rating">${'★'.repeat(Math.round(data.averageRating))} (${data.averageRating})</span></p>
+    document.getElementById('seeAllContributionsButton').addEventListener('click', async () => {
+        const searchResultsDiv = document.getElementById('searchResults');
+        const searchResultsContent = document.getElementById('searchResultsContent');
+        
+        // Show loading state
+        searchResultsDiv.style.display = 'block';
+        searchResultsContent.innerHTML = '<div class="no-results"><div class="no-results-icon">⏳</div><div>Loading all reviews...</div></div>';
+        
+        try {
+            const response = await fetch('https://review-teachers.onrender.com/api/contributions/search?query=');
+            const data = await response.json();
+            
+            if (response.ok && data.allReviews) {
+                searchResultsContent.innerHTML = data.allReviews.map(review => `
+                    <div class="review-item">
+                        <div class="review-header">
+                            <div class="reviewer-avatar">${review.reviewerName.charAt(0).toUpperCase()}</div>
+                            <div class="reviewer-info">
+                                <div class="reviewer-name">${review.reviewerName}</div>
+                                <div class="review-date">${new Date(review.createdAt).toLocaleDateString()}</div>
                             </div>
-                            <div class="reviews-list">
-                                <h4>All Reviews:</h4>
-                                ${data.reviews.map(review => `
-                                    <div class="review-card animated">
-                                        <p><strong>Reviewer:</strong> ${review.reviewerName}</p>
-                                        <p><strong>Rating:</strong> <span class="rating">${'★'.repeat(review.rating)}</span></p>
-                                        <p>${review.review}</p>
-                                        <p style="font-size: 0.8em; color: #777;"><em>Submitted on: ${new Date(review.createdAt).toLocaleDateString()}</em></p>
-                                    </div>
-                                `).join('')}
+                            <div class="rating-stars">
+                                ${'★'.repeat(review.rating).split('').map(star => `<span class="star">${star}</span>`).join('')}
                             </div>
-                        `;
-                    }
-                } else {
-                    if (searchResultsDiv && searchResultsContentDiv) {
-                        searchResultsDiv.style.display = 'block';
-                        searchResultsContentDiv.innerHTML = `<p class="message error">${data.message || 'Search failed.'}</p>`;
-                    }
-                }
-            } catch (error) {
-                console.error('Error during search:', error);
-                displayMessage('An error occurred while searching. Please try again later.', 'error');
-                if (searchResultsDiv) searchResultsDiv.style.display = 'none';
+                        </div>
+                        <div class="review-text">${review.review}</div>
+                        <div class="faculty-tag">${review.facultyName} (${review.facultyEmail})</div>
+                    </div>
+                `).join('');
+            } else {
+                searchResultsContent.innerHTML = '<div class="no-results"><div class="no-results-icon">📝</div><div>No reviews found</div></div>';
             }
-        });
-    }
+        } catch (error) {
+            console.error('Error loading all reviews:', error);
+            searchResultsContent.innerHTML = '<div class="no-results"><div class="no-results-icon">⚠️</div><div>Failed to load reviews</div></div>';
+        }
+    });
 
     if (logoutButton) {
         logoutButton.addEventListener('click', () => {
