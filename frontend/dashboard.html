@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Gitam Student Portal</title>
+    <!-- Add Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
   * {
     margin: 0;
@@ -132,6 +134,8 @@
   .nav-icon {
     margin-right: 12px;
     font-size: 16px;
+    width: 16px;
+    text-align: center;
   }
 
   .nav-count {
@@ -313,13 +317,16 @@
 
   /* Review Cards */
   .review-item {
-    padding: 24px 30px;
+    padding: 25px 30px;
     border-bottom: 1px solid #f7fafc;
     transition: all 0.3s ease;
+    background: white;
   }
 
   .review-item:hover {
-    background: #f7fafc;
+    background: #f8fafc;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   }
 
   .review-item:last-child {
@@ -329,21 +336,22 @@
   .review-header {
     display: flex;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
   }
 
   .reviewer-avatar {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-weight: 600;
-    font-size: 16px;
-    margin-right: 12px;
+    font-weight: 700;
+    font-size: 18px;
+    margin-right: 15px;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
   }
 
   .reviewer-info {
@@ -351,150 +359,147 @@
   }
 
   .reviewer-name {
-    font-weight: 600;
+    font-weight: 700;
     color: #2d3748;
-    font-size: 14px;
-    margin-bottom: 2px;
+    font-size: 16px;
+    margin-bottom: 4px;
   }
 
   .review-date {
-    font-size: 12px;
+    font-size: 13px;
     color: #718096;
+    font-weight: 500;
   }
 
   .rating-stars {
     display: flex;
-    gap: 2px;
+    gap: 3px;
     margin-left: auto;
+    background: #fff3cd;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid #ffeaa7;
   }
 
   .star {
     color: #ffd700;
-    font-size: 16px;
+    font-size: 18px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   }
 
   .review-text {
     color: #4a5568;
-    line-height: 1.6;
-    font-size: 14px;
-    margin-top: 12px;
+    line-height: 1.7;
+    font-size: 15px;
+    margin: 15px 0;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border-left: 4px solid #667eea;
+    font-style: italic;
   }
 
   .faculty-tag {
-    display: inline-block;
-    background: rgba(102, 126, 234, 0.1);
-    color: #667eea;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
-    margin-top: 12px;
-  }
-
-  /* Action Buttons */
-  .action-buttons {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 30px;
-  }
-
-  .action-btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-size: 14px;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 8px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    color: #667eea;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 15px;
+    border: 1px solid rgba(102, 126, 234, 0.2);
   }
 
-  .action-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+  .faculty-tag i {
+    font-size: 14px;
   }
 
-  /* Search Results */
-  .search-results {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    margin-top: 20px;
-    display: none;
-  }
-
-  /* No Results */
+  /* Empty State Improvements */
   .no-results {
     text-align: center;
-    padding: 60px 20px;
+    padding: 80px 30px;
     color: #718096;
   }
 
   .no-results-icon {
-    font-size: 48px;
-    margin-bottom: 16px;
-    opacity: 0.5;
+    font-size: 64px;
+    margin-bottom: 20px;
+    opacity: 0.4;
+    color: #cbd5e0;
   }
 
-  /* Loading Spinner */
-  .loading-spinner {
-    border: 4px solid rgba(255, 255, 255, 0.3);
-    border-top: 4px solid #667eea;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 16px;
+  .no-results div:first-child {
+    font-size: 20px;
+    font-weight: 600;
+    color: #4a5568;
+    margin-bottom: 8px;
   }
 
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  .no-results div:last-child {
+    font-size: 15px;
+    color: #718096;
+    line-height: 1.5;
   }
 
-  /* Responsive Design */
+  /* Search Results Header */
+  .search-results .reviews-header {
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+    border-bottom: 2px solid #e2e8f0;
+  }
+
+  .search-results .reviews-title {
+    color: #2d3748;
+    font-size: 22px;
+  }
+
+  .search-results .reviews-subtitle {
+    color: #718096;
+    font-size: 15px;
+  }
+
+  /* Responsive improvements */
   @media (max-width: 768px) {
-    .sidebar {
-      transform: translateX(-100%);
-      transition: transform 0.3s ease;
-    }
-
-    .sidebar.open {
-      transform: translateX(0);
-    }
-
-    .main-container {
-      margin-left: 0;
-    }
-
-    .main-header {
-      padding: 15px 20px;
-    }
-
-    .search-header {
-      margin: 0 15px;
-      max-width: none;
-    }
-
-    .content-area {
+    .faculty-profile-header {
       padding: 20px;
     }
 
-    .stats-grid {
-      grid-template-columns: 1fr;
+    .faculty-name {
+      font-size: 20px;
     }
 
-    .action-buttons {
+    .faculty-rating {
       flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
     }
 
     .review-item {
-      padding: 20px;
+      padding: 20px 15px;
+    }
+
+    .review-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .rating-stars {
+      margin-left: 0;
+      align-self: flex-end;
+    }
+
+    .reviewer-avatar {
+      width: 40px;
+      height: 40px;
+      font-size: 16px;
+    }
+
+    .review-text {
+      padding: 15px;
+      font-size: 14px;
     }
   }
 
@@ -512,6 +517,2005 @@
     .mobile-menu-btn {
       display: block;
     }
+  }
+
+  /* Inline Add Review Styles */
+  .form-group-inline {
+    margin-bottom: 25px;
+  }
+
+  .form-group-inline label {
+    display: block;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 8px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .form-group-inline input[type="text"],
+  .form-group-inline input[type="email"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    background: rgba(248, 250, 252, 0.9);
+    transition: all 0.3s ease;
+    font-family: inherit;
+  }
+
+  .form-group-inline input[type="text"]:focus,
+  .form-group-inline input[type="email"]:focus {
+    border-color: #667eea;
+    outline: none;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+
+  .rating-section-inline {
+    margin: 30px 0;
+    text-align: center;
+  }
+
+  .rating-question-inline {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 20px;
+  }
+
+  .star-rating-inline {
+    display: flex;
+    gap: 8px;
+    margin: 20px 0;
+    justify-content: center;
+  }
+
+  .star-rating-inline input {
+    display: none;
+  }
+
+  .star-rating-inline label {
+    font-size: 28px;
+    cursor: pointer;
+    color: #e2e8f0;
+    transition: all 0.2s ease;
+  }
+
+  .star-rating-inline label:hover,
+  .star-rating-inline label:hover ~ label {
+    color: #ffd700;
+    transform: scale(1.1);
+  }
+
+  .star-rating-inline input:checked ~ label {
+    color: #ffd700;
+  }
+
+  .review-section-inline {
+    margin: 30px 0;
+  }
+
+  .review-section-inline label {
+    display: block;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+
+  .review-textarea-inline {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    background: rgba(248, 250, 252, 0.9);
+    transition: all 0.3s ease;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.6;
+  }
+
+  .review-textarea-inline:focus {
+    border-color: #667eea;
+    outline: none;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+
+  .char-counter-inline {
+    text-align: right;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #718096;
+    font-weight: 500;
+  }
+
+  .char-counter-inline.warning {
+    color: #d69e2e;
+  }
+
+  .char-counter-inline.danger {
+    color: #e53e3e;
+  }
+
+  .submit-btn-inline {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .submit-btn-inline:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+  }
+
+  .submit-btn-inline:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .disclaimer-inline {
+    margin-top: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(255, 245, 245, 0.9) 0%, rgba(254, 215, 215, 0.9) 100%);
+    border: 2px solid #feb2b2;
+    border-radius: 8px;
+    color: #742a2a;
+    font-size: 13px;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .disclaimer-inline i {
+    font-size: 16px;
+    color: #e53e3e;
+    flex-shrink: 0;
+  }
+
+  .message-inline {
+    margin-top: 20px;
+    padding: 16px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .message-inline.error {
+    background: linear-gradient(135deg, rgba(254, 215, 215, 0.9) 0%, rgba(254, 178, 178, 0.9) 100%);
+    color: #c53030;
+    border: 2px solid #fc8181;
+  }
+
+  .message-inline.ok {
+    background: linear-gradient(135deg, rgba(198, 246, 213, 0.9) 0%, rgba(154, 230, 180, 0.9) 100%);
+    color: #276749;
+    border: 2px solid #68d391;
+  }
+
+  /* Enhanced Review Display Styles */
+  .faculty-profile-header {
+    padding: 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .faculty-name {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .faculty-email {
+    font-size: 16px;
+    opacity: 0.9;
+    margin-bottom: 15px;
+  }
+
+  .faculty-rating {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .stars {
+    display: flex;
+    gap: 2px;
+  }
+
+  .rating-text {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .review-count-badge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  /* Enhanced Review Items */
+  .review-item {
+    padding: 25px 30px;
+    border-bottom: 1px solid #f7fafc;
+    transition: all 0.3s ease;
+    background: white;
+  }
+
+  .review-item:hover {
+    background: #f8fafc;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .review-item:last-child {
+    border-bottom: none;
+  }
+
+  .review-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .reviewer-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    margin-right: 15px;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  }
+
+  .reviewer-info {
+    flex: 1;
+  }
+
+  .reviewer-name {
+    font-weight: 700;
+    color: #2d3748;
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+
+  .review-date {
+    font-size: 13px;
+    color: #718096;
+    font-weight: 500;
+  }
+
+  .rating-stars {
+    display: flex;
+    gap: 3px;
+    margin-left: auto;
+    background: #fff3cd;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid #ffeaa7;
+  }
+
+  .star {
+    color: #ffd700;
+    font-size: 18px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .review-text {
+    color: #4a5568;
+    line-height: 1.7;
+    font-size: 15px;
+    margin: 15px 0;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border-left: 4px solid #667eea;
+    font-style: italic;
+  }
+
+  .faculty-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    color: #667eea;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 15px;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+  }
+
+  .faculty-tag i {
+    font-size: 14px;
+  }
+
+  /* Empty State Improvements */
+  .no-results {
+    text-align: center;
+    padding: 80px 30px;
+    color: #718096;
+  }
+
+  .no-results-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+    opacity: 0.4;
+    color: #cbd5e0;
+  }
+
+  .no-results div:first-child {
+    font-size: 20px;
+    font-weight: 600;
+    color: #4a5568;
+    margin-bottom: 8px;
+  }
+
+  .no-results div:last-child {
+    font-size: 15px;
+    color: #718096;
+    line-height: 1.5;
+  }
+
+  /* Search Results Header */
+  .search-results .reviews-header {
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+    border-bottom: 2px solid #e2e8f0;
+  }
+
+  .search-results .reviews-title {
+    color: #2d3748;
+    font-size: 22px;
+  }
+
+  .search-results .reviews-subtitle {
+    color: #718096;
+    font-size: 15px;
+  }
+
+  /* Responsive improvements */
+  @media (max-width: 768px) {
+    .faculty-profile-header {
+      padding: 20px;
+    }
+
+    .faculty-name {
+      font-size: 20px;
+    }
+
+    .faculty-rating {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .review-item {
+      padding: 20px 15px;
+    }
+
+    .review-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .rating-stars {
+      margin-left: 0;
+      align-self: flex-end;
+    }
+
+    .reviewer-avatar {
+      width: 40px;
+      height: 40px;
+      font-size: 16px;
+    }
+
+    .review-text {
+      padding: 15px;
+      font-size: 14px;
+    }
+  }
+
+  /* Mobile Menu Button */
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #2d3748;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .mobile-menu-btn {
+      display: block;
+    }
+  }
+
+  /* Inline Add Review Styles */
+  .form-group-inline {
+    margin-bottom: 25px;
+  }
+
+  .form-group-inline label {
+    display: block;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 8px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .form-group-inline input[type="text"],
+  .form-group-inline input[type="email"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    background: rgba(248, 250, 252, 0.9);
+    transition: all 0.3s ease;
+    font-family: inherit;
+  }
+
+  .form-group-inline input[type="text"]:focus,
+  .form-group-inline input[type="email"]:focus {
+    border-color: #667eea;
+    outline: none;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+
+  .rating-section-inline {
+    margin: 30px 0;
+    text-align: center;
+  }
+
+  .rating-question-inline {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 20px;
+  }
+
+  .star-rating-inline {
+    display: flex;
+    gap: 8px;
+    margin: 20px 0;
+    justify-content: center;
+  }
+
+  .star-rating-inline input {
+    display: none;
+  }
+
+  .star-rating-inline label {
+    font-size: 28px;
+    cursor: pointer;
+    color: #e2e8f0;
+    transition: all 0.2s ease;
+  }
+
+  .star-rating-inline label:hover,
+  .star-rating-inline label:hover ~ label {
+    color: #ffd700;
+    transform: scale(1.1);
+  }
+
+  .star-rating-inline input:checked ~ label {
+    color: #ffd700;
+  }
+
+  .review-section-inline {
+    margin: 30px 0;
+  }
+
+  .review-section-inline label {
+    display: block;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+
+  .review-textarea-inline {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    background: rgba(248, 250, 252, 0.9);
+    transition: all 0.3s ease;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.6;
+  }
+
+  .review-textarea-inline:focus {
+    border-color: #667eea;
+    outline: none;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+
+  .char-counter-inline {
+    text-align: right;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #718096;
+    font-weight: 500;
+  }
+
+  .char-counter-inline.warning {
+    color: #d69e2e;
+  }
+
+  .char-counter-inline.danger {
+    color: #e53e3e;
+  }
+
+  .submit-btn-inline {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .submit-btn-inline:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+  }
+
+  .submit-btn-inline:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .disclaimer-inline {
+    margin-top: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(255, 245, 245, 0.9) 0%, rgba(254, 215, 215, 0.9) 100%);
+    border: 2px solid #feb2b2;
+    border-radius: 8px;
+    color: #742a2a;
+    font-size: 13px;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .disclaimer-inline i {
+    font-size: 16px;
+    color: #e53e3e;
+    flex-shrink: 0;
+  }
+
+  .message-inline {
+    margin-top: 20px;
+    padding: 16px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .message-inline.error {
+    background: linear-gradient(135deg, rgba(254, 215, 215, 0.9) 0%, rgba(254, 178, 178, 0.9) 100%);
+    color: #c53030;
+    border: 2px solid #fc8181;
+  }
+
+  .message-inline.ok {
+    background: linear-gradient(135deg, rgba(198, 246, 213, 0.9) 0%, rgba(154, 230, 180, 0.9) 100%);
+    color: #276749;
+    border: 2px solid #68d391;
+  }
+
+  /* Enhanced Review Display Styles */
+  .faculty-profile-header {
+    padding: 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .faculty-name {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .faculty-email {
+    font-size: 16px;
+    opacity: 0.9;
+    margin-bottom: 15px;
+  }
+
+  .faculty-rating {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .stars {
+    display: flex;
+    gap: 2px;
+  }
+
+  .rating-text {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .review-count-badge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  /* Enhanced Review Items */
+  .review-item {
+    padding: 25px 30px;
+    border-bottom: 1px solid #f7fafc;
+    transition: all 0.3s ease;
+    background: white;
+  }
+
+  .review-item:hover {
+    background: #f8fafc;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .review-item:last-child {
+    border-bottom: none;
+  }
+
+  .review-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .reviewer-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    margin-right: 15px;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  }
+
+  .reviewer-info {
+    flex: 1;
+  }
+
+  .reviewer-name {
+    font-weight: 700;
+    color: #2d3748;
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+
+  .review-date {
+    font-size: 13px;
+    color: #718096;
+    font-weight: 500;
+  }
+
+  .rating-stars {
+    display: flex;
+    gap: 3px;
+    margin-left: auto;
+    background: #fff3cd;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid #ffeaa7;
+  }
+
+  .star {
+    color: #ffd700;
+    font-size: 18px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .review-text {
+    color: #4a5568;
+    line-height: 1.7;
+    font-size: 15px;
+    margin: 15px 0;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border-left: 4px solid #667eea;
+    font-style: italic;
+  }
+
+  .faculty-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    color: #667eea;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 15px;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+  }
+
+  .faculty-tag i {
+    font-size: 14px;
+  }
+
+  /* Empty State Improvements */
+  .no-results {
+    text-align: center;
+    padding: 80px 30px;
+    color: #718096;
+  }
+
+  .no-results-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+    opacity: 0.4;
+    color: #cbd5e0;
+  }
+
+  .no-results div:first-child {
+    font-size: 20px;
+    font-weight: 600;
+    color: #4a5568;
+    margin-bottom: 8px;
+  }
+
+  .no-results div:last-child {
+    font-size: 15px;
+    color: #718096;
+    line-height: 1.5;
+  }
+
+  /* Search Results Header */
+  .search-results .reviews-header {
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+    border-bottom: 2px solid #e2e8f0;
+  }
+
+  .search-results .reviews-title {
+    color: #2d3748;
+    font-size: 22px;
+  }
+
+  .search-results .reviews-subtitle {
+    color: #718096;
+    font-size: 15px;
+  }
+
+  /* Responsive improvements */
+  @media (max-width: 768px) {
+    .faculty-profile-header {
+      padding: 20px;
+    }
+
+    .faculty-name {
+      font-size: 20px;
+    }
+
+    .faculty-rating {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .review-item {
+      padding: 20px 15px;
+    }
+
+    .review-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .rating-stars {
+      margin-left: 0;
+      align-self: flex-end;
+    }
+
+    .reviewer-avatar {
+      width: 40px;
+      height: 40px;
+      font-size: 16px;
+    }
+
+    .review-text {
+      padding: 15px;
+      font-size: 14px;
+    }
+  }
+
+  /* Mobile Menu Button */
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #2d3748;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .mobile-menu-btn {
+      display: block;
+    }
+  }
+
+  /* Inline Add Review Styles */
+  .form-group-inline {
+    margin-bottom: 25px;
+  }
+
+  .form-group-inline label {
+    display: block;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 8px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .form-group-inline input[type="text"],
+  .form-group-inline input[type="email"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    background: rgba(248, 250, 252, 0.9);
+    transition: all 0.3s ease;
+    font-family: inherit;
+  }
+
+  .form-group-inline input[type="text"]:focus,
+  .form-group-inline input[type="email"]:focus {
+    border-color: #667eea;
+    outline: none;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+
+  .rating-section-inline {
+    margin: 30px 0;
+    text-align: center;
+  }
+
+  .rating-question-inline {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 20px;
+  }
+
+  .star-rating-inline {
+    display: flex;
+    gap: 8px;
+    margin: 20px 0;
+    justify-content: center;
+  }
+
+  .star-rating-inline input {
+    display: none;
+  }
+
+  .star-rating-inline label {
+    font-size: 28px;
+    cursor: pointer;
+    color: #e2e8f0;
+    transition: all 0.2s ease;
+  }
+
+  .star-rating-inline label:hover,
+  .star-rating-inline label:hover ~ label {
+    color: #ffd700;
+    transform: scale(1.1);
+  }
+
+  .star-rating-inline input:checked ~ label {
+    color: #ffd700;
+  }
+
+  .review-section-inline {
+    margin: 30px 0;
+  }
+
+  .review-section-inline label {
+    display: block;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+
+  .review-textarea-inline {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    background: rgba(248, 250, 252, 0.9);
+    transition: all 0.3s ease;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.6;
+  }
+
+  .review-textarea-inline:focus {
+    border-color: #667eea;
+    outline: none;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+
+  .char-counter-inline {
+    text-align: right;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #718096;
+    font-weight: 500;
+  }
+
+  .char-counter-inline.warning {
+    color: #d69e2e;
+  }
+
+  .char-counter-inline.danger {
+    color: #e53e3e;
+  }
+
+  .submit-btn-inline {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .submit-btn-inline:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+  }
+
+  .submit-btn-inline:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .disclaimer-inline {
+    margin-top: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(255, 245, 245, 0.9) 0%, rgba(254, 215, 215, 0.9) 100%);
+    border: 2px solid #feb2b2;
+    border-radius: 8px;
+    color: #742a2a;
+    font-size: 13px;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .disclaimer-inline i {
+    font-size: 16px;
+    color: #e53e3e;
+    flex-shrink: 0;
+  }
+
+  .message-inline {
+    margin-top: 20px;
+    padding: 16px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .message-inline.error {
+    background: linear-gradient(135deg, rgba(254, 215, 215, 0.9) 0%, rgba(254, 178, 178, 0.9) 100%);
+    color: #c53030;
+    border: 2px solid #fc8181;
+  }
+
+  .message-inline.ok {
+    background: linear-gradient(135deg, rgba(198, 246, 213, 0.9) 0%, rgba(154, 230, 180, 0.9) 100%);
+    color: #276749;
+    border: 2px solid #68d391;
+  }
+
+  /* Enhanced Review Display Styles */
+  .faculty-profile-header {
+    padding: 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .faculty-name {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .faculty-email {
+    font-size: 16px;
+    opacity: 0.9;
+    margin-bottom: 15px;
+  }
+
+  .faculty-rating {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .stars {
+    display: flex;
+    gap: 2px;
+  }
+
+  .rating-text {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .review-count-badge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  /* Enhanced Review Items */
+  .review-item {
+    padding: 25px 30px;
+    border-bottom: 1px solid #f7fafc;
+    transition: all 0.3s ease;
+    background: white;
+  }
+
+  .review-item:hover {
+    background: #f8fafc;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .review-item:last-child {
+    border-bottom: none;
+  }
+
+  .review-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .reviewer-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    margin-right: 15px;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  }
+
+  .reviewer-info {
+    flex: 1;
+  }
+
+  .reviewer-name {
+    font-weight: 700;
+    color: #2d3748;
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+
+  .review-date {
+    font-size: 13px;
+    color: #718096;
+    font-weight: 500;
+  }
+
+  .rating-stars {
+    display: flex;
+    gap: 3px;
+    margin-left: auto;
+    background: #fff3cd;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid #ffeaa7;
+  }
+
+  .star {
+    color: #ffd700;
+    font-size: 18px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .review-text {
+    color: #4a5568;
+    line-height: 1.7;
+    font-size: 15px;
+    margin: 15px 0;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border-left: 4px solid #667eea;
+    font-style: italic;
+  }
+
+  .faculty-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    color: #667eea;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 15px;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+  }
+
+  .faculty-tag i {
+    font-size: 14px;
+  }
+
+  /* Empty State Improvements */
+  .no-results {
+    text-align: center;
+    padding: 80px 30px;
+    color: #718096;
+  }
+
+  .no-results-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+    opacity: 0.4;
+    color: #cbd5e0;
+  }
+
+  .no-results div:first-child {
+    font-size: 20px;
+    font-weight: 600;
+    color: #4a5568;
+    margin-bottom: 8px;
+  }
+
+  .no-results div:last-child {
+    font-size: 15px;
+    color: #718096;
+    line-height: 1.5;
+  }
+
+  /* Search Results Header */
+  .search-results .reviews-header {
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+    border-bottom: 2px solid #e2e8f0;
+  }
+
+  .search-results .reviews-title {
+    color: #2d3748;
+    font-size: 22px;
+  }
+
+  .search-results .reviews-subtitle {
+    color: #718096;
+    font-size: 15px;
+  }
+
+  /* Responsive improvements */
+  @media (max-width: 768px) {
+    .faculty-profile-header {
+      padding: 20px;
+    }
+
+    .faculty-name {
+      font-size: 20px;
+    }
+
+    .faculty-rating {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .review-item {
+      padding: 20px 15px;
+    }
+
+    .review-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .rating-stars {
+      margin-left: 0;
+      align-self: flex-end;
+    }
+
+    .reviewer-avatar {
+      width: 40px;
+      height: 40px;
+      font-size: 16px;
+    }
+
+    .review-text {
+      padding: 15px;
+      font-size: 14px;
+    }
+  }
+
+  /* Mobile Menu Button */
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #2d3748;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .mobile-menu-btn {
+      display: block;
+    }
+  }
+
+  /* Inline Add Review Styles */
+  .form-group-inline {
+    margin-bottom: 25px;
+  }
+
+  .form-group-inline label {
+    display: block;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 8px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .form-group-inline input[type="text"],
+  .form-group-inline input[type="email"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    background: rgba(248, 250, 252, 0.9);
+    transition: all 0.3s ease;
+    font-family: inherit;
+  }
+
+  .form-group-inline input[type="text"]:focus,
+  .form-group-inline input[type="email"]:focus {
+    border-color: #667eea;
+    outline: none;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+
+  .rating-section-inline {
+    margin: 30px 0;
+    text-align: center;
+  }
+
+  .rating-question-inline {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 20px;
+  }
+
+  .star-rating-inline {
+    display: flex;
+    gap: 8px;
+    margin: 20px 0;
+    justify-content: center;
+  }
+
+  .star-rating-inline input {
+    display: none;
+  }
+
+  .star-rating-inline label {
+    font-size: 28px;
+    cursor: pointer;
+    color: #e2e8f0;
+    transition: all 0.2s ease;
+  }
+
+  .star-rating-inline label:hover,
+  .star-rating-inline label:hover ~ label {
+    color: #ffd700;
+    transform: scale(1.1);
+  }
+
+  .star-rating-inline input:checked ~ label {
+    color: #ffd700;
+  }
+
+  .review-section-inline {
+    margin: 30px 0;
+  }
+
+  .review-section-inline label {
+    display: block;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+
+  .review-textarea-inline {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    background: rgba(248, 250, 252, 0.9);
+    transition: all 0.3s ease;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.6;
+  }
+
+  .review-textarea-inline:focus {
+    border-color: #667eea;
+    outline: none;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+
+  .char-counter-inline {
+    text-align: right;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #718096;
+    font-weight: 500;
+  }
+
+  .char-counter-inline.warning {
+    color: #d69e2e;
+  }
+
+  .char-counter-inline.danger {
+    color: #e53e3e;
+  }
+
+  .submit-btn-inline {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .submit-btn-inline:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+  }
+
+  .submit-btn-inline:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .disclaimer-inline {
+    margin-top: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(255, 245, 245, 0.9) 0%, rgba(254, 215, 215, 0.9) 100%);
+    border: 2px solid #feb2b2;
+    border-radius: 8px;
+    color: #742a2a;
+    font-size: 13px;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .disclaimer-inline i {
+    font-size: 16px;
+    color: #e53e3e;
+    flex-shrink: 0;
+  }
+
+  .message-inline {
+    margin-top: 20px;
+    padding: 16px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .message-inline.error {
+    background: linear-gradient(135deg, rgba(254, 215, 215, 0.9) 0%, rgba(254, 178, 178, 0.9) 100%);
+    color: #c53030;
+    border: 2px solid #fc8181;
+  }
+
+  .message-inline.ok {
+    background: linear-gradient(135deg, rgba(198, 246, 213, 0.9) 0%, rgba(154, 230, 180, 0.9) 100%);
+    color: #276749;
+    border: 2px solid #68d391;
+  }
+
+  /* Enhanced Review Display Styles */
+  .faculty-profile-header {
+    padding: 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .faculty-name {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .faculty-email {
+    font-size: 16px;
+    opacity: 0.9;
+    margin-bottom: 15px;
+  }
+
+  .faculty-rating {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .stars {
+    display: flex;
+    gap: 2px;
+  }
+
+  .rating-text {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .review-count-badge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  /* Enhanced Review Items */
+  .review-item {
+    padding: 25px 30px;
+    border-bottom: 1px solid #f7fafc;
+    transition: all 0.3s ease;
+    background: white;
+  }
+
+  .review-item:hover {
+    background: #f8fafc;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .review-item:last-child {
+    border-bottom: none;
+  }
+
+  .review-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .reviewer-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    margin-right: 15px;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  }
+
+  .reviewer-info {
+    flex: 1;
+  }
+
+  .reviewer-name {
+    font-weight: 700;
+    color: #2d3748;
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+
+  .review-date {
+    font-size: 13px;
+    color: #718096;
+    font-weight: 500;
+  }
+
+  .rating-stars {
+    display: flex;
+    gap: 3px;
+    margin-left: auto;
+    background: #fff3cd;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid #ffeaa7;
+  }
+
+  .star {
+    color: #ffd700;
+    font-size: 18px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .review-text {
+    color: #4a5568;
+    line-height: 1.7;
+    font-size: 15px;
+    margin: 15px 0;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border-left: 4px solid #667eea;
+    font-style: italic;
+  }
+
+  .faculty-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    color: #667eea;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 15px;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+  }
+
+  .faculty-tag i {
+    font-size: 14px;
+  }
+
+  /* Empty State Improvements */
+  .no-results {
+    text-align: center;
+    padding: 80px 30px;
+    color: #718096;
+  }
+
+  .no-results-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+    opacity: 0.4;
+    color: #cbd5e0;
+  }
+
+  .no-results div:first-child {
+    font-size: 20px;
+    font-weight: 600;
+    color: #4a5568;
+    margin-bottom: 8px;
+  }
+
+  .no-results div:last-child {
+    font-size: 15px;
+    color: #718096;
+    line-height: 1.5;
+  }
+
+  /* Search Results Header */
+  .search-results .reviews-header {
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+    border-bottom: 2px solid #e2e8f0;
+  }
+
+  .search-results .reviews-title {
+    color: #2d3748;
+    font-size: 22px;
+  }
+
+  .search-results .reviews-subtitle {
+    color: #718096;
+    font-size: 15px;
+  }
+
+  /* Responsive improvements */
+  @media (max-width: 768px) {
+    .faculty-profile-header {
+      padding: 20px;
+    }
+
+    .faculty-name {
+      font-size: 20px;
+    }
+
+    .faculty-rating {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .review-item {
+      padding: 20px 15px;
+    }
+
+    .review-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .rating-stars {
+      margin-left: 0;
+      align-self: flex-end;
+    }
+
+    .reviewer-avatar {
+      width: 40px;
+      height: 40px;
+      font-size: 16px;
+    }
+
+    .review-text {
+      padding: 15px;
+      font-size: 14px;
+    }
+  }
+
+  /* Mobile Menu Button */
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #2d3748;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .mobile-menu-btn {
+      display: block;
+    }
+  }
+
+  /* Inline Add Review Styles */
+  .form-group-inline {
+    margin-bottom: 25px;
+  }
+
+  .form-group-inline label {
+    display: block;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 8px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .form-group-inline input[type="text"],
+  .form-group-inline input[type="email"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    background: rgba(248, 250, 252, 0.9);
+    transition: all 0.3s ease;
+    font-family: inherit;
+  }
+
+  .form-group-inline input[type="text"]:focus,
+  .form-group-inline input[type="email"]:focus {
+    border-color: #667eea;
+    outline: none;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+
+  .rating-section-inline {
+    margin: 30px 0;
+    text-align: center;
+  }
+
+  .rating-question-inline {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 20px;
+  }
+
+  .star-rating-inline {
+    display: flex;
+    gap: 8px;
+    margin: 20px 0;
+    justify-content: center;
+  }
+
+  .star-rating-inline input {
+    display: none;
+  }
+
+  .star-rating-inline label {
+    font-size: 28px;
+    cursor: pointer;
+    color: #e2e8f0;
+    transition: all 0.2s ease;
+  }
+
+  .star-rating-inline label:hover,
+  .star-rating-inline label:hover ~ label {
+    color: #ffd700;
+    transform: scale(1.1);
+  }
+
+  .star-rating-inline input:checked ~ label {
+    color: #ffd700;
+  }
+
+  .review-section-inline {
+    margin: 30px 0;
+  }
+
+  .review-section-inline label {
+    display: block;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+
+  .review-textarea-inline {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    background: rgba(248, 250, 252, 0.9);
+    transition: all 0.3s ease;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.6;
+  }
+
+  .review-textarea-inline:focus {
+    border-color: #667eea;
+    outline: none;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+
+  .char-counter-inline {
+    text-align: right;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #718096;
+    font-weight: 500;
+  }
+
+  .char-counter-inline.warning {
+    color: #d69e2e;
+  }
+
+  .char-counter-inline.danger {
+    color: #e53e3e;
+  }
+
+  .submit-btn-inline {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .submit-btn-inline:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+  }
+
+  .submit-btn-inline:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .disclaimer-inline {
+    margin-top: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(255, 245, 245, 0.9) 0%, rgba(254, 215, 215, 0.9) 100%);
+    border: 2px solid #feb2b2;
+    border-radius: 8px;
+    color: #742a2a;
+    font-size: 13px;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .disclaimer-inline i {
+    font-size: 16px;
+    color: #e53e3e;
+    flex-shrink: 0;
+  }
+
+  .message-inline {
+    margin-top: 20px;
+    padding: 16px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .message-inline.error {
+    background: linear-gradient(135deg, rgba(254, 215, 215, 0.9) 0%, rgba(254, 178, 178, 0.9) 100%);
+    color: #c53030;
+    border: 2px solid #fc8181;
+  }
+
+  .message-inline.ok {
+    background: linear-gradient(135deg, rgba(198, 246, 213, 0.9) 0%, rgba(154, 230, 180, 0.9) 100%);
+    color: #276749;
+    border: 2px solid #68d391;
+  }
+
+  /* Bad word filter styles */
+  .abusive-word {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #c53030;
+    padding: 2px 4px;
+    border-radius: 4px;
   }
 </style>
 </head>
@@ -534,21 +2538,21 @@
             <ul class="nav-items">
                 <li class="nav-item">
                     <a href="#" class="nav-link active" data-section="dashboard">
-                        <span class="nav-icon">📊</span>
+                        <span class="nav-icon"><i class="fas fa-chart-bar"></i></span>
                         Dashboard
                         <span class="nav-count" id="dashboardCount">0</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link" data-section="your-reviews">
-                        <span class="nav-icon">📝</span>
+                        <span class="nav-icon"><i class="fas fa-user-edit"></i></span>
                         Your Reviews
                         <span class="nav-count" id="yourReviewsCount">0</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link" data-section="all-reviews">
-                        <span class="nav-icon">👥</span>
+                        <span class="nav-icon"><i class="fas fa-users"></i></span>
                         All Reviews
                         <span class="nav-count" id="allReviewsCount">0</span>
                     </a>
@@ -564,7 +2568,7 @@
 
         <div class="logout-section">
             <button id="logoutButton" class="logout-btn">
-                <span style="margin-right: 8px;"></span>
+                <i class="fas fa-sign-out-alt" style="margin-right: 8px;"></i>
                 Logout
             </button>
         </div>
@@ -574,11 +2578,15 @@
     <div class="main-container">
         <!-- Header -->
         <div class="main-header">
-            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
             <h1 class="header-title">Faculty Reviews</h1>
             <div class="search-header">
                 <input type="text" id="teacherSearchInput" class="search-input-header" placeholder="Search faculty...">
-                <button id="teacherSearchButton" class="search-btn-header">Search</button>
+                <button id="teacherSearchButton" class="search-btn-header">
+                    <i class="fas fa-search"></i> Search
+                </button>
             </div>
             <div style="width: 100px;"></div> <!-- Spacer for balance -->
         </div>
@@ -615,7 +2623,7 @@
                 </div>
                 <div class="reviews-content" id="mainReviewsContent">
                     <div class="no-results">
-                        <div class="no-results-icon"></div>
+                        <div class="no-results-icon"><i class="fas fa-spinner fa-spin"></i></div>
                         <div>Loading latest reviews...</div>
                     </div>
                 </div>
@@ -630,6 +2638,92 @@
                     </div>
                 </div>
                 <div id="searchResultsContent" class="reviews-content"></div>
+            </div>
+
+            <!-- Add Review Section (inline) -->
+            <div id="addReviewSection" class="reviews-container" style="display: none;">
+                <div class="reviews-header">
+                    <div>
+                        <div class="reviews-title">Add Your Review</div>
+                        <div class="reviews-subtitle">Share your experience with faculty to help fellow students</div>
+                    </div>
+                </div>
+                <div class="reviews-content" style="max-height: none; overflow: visible;">
+                    <div style="padding: 30px;">
+                        <!-- Add Review Form -->
+                        <form id="inlineContributionForm" method="POST">
+                            <div class="form-group-inline">
+                                <label for="inlineFacultyName">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                    Faculty Name
+                                </label>
+                                <input type="text" id="inlineFacultyName" name="facultyName" placeholder="Enter faculty name" required>
+                            </div>
+
+                            <div class="form-group-inline">
+                                <label for="inlineFacultyEmail">
+                                    <i class="fas fa-envelope"></i>
+                                    Faculty Email ID
+                                </label>
+                                <input type="email" id="inlineFacultyEmail" name="facultyEmail" placeholder="faculty@gitam.edu" required>
+                                <small style="margin-top: 8px; display: block; color: #718096; font-size: 13px;">
+                                    <i class="fas fa-info-circle"></i>
+                                    If unsure, visit the <a href="https://www.gitam.edu/about/faculty?campus=visakhapatnam&discipline_id=18&campus_id=All&specialization=All&type=pg_faculty&page=1" target="_blank" style="color: #667eea;">Gitam Faculty Portal</a>
+                                </small>
+                            </div>
+
+                            <div class="rating-section-inline">
+                                <div class="rating-question-inline">
+                                    How satisfied are you overall with your Faculty Experience?
+                                </div>
+                                <div class="star-rating-inline">
+                                    <input type="radio" id="inlineStar5" name="rating" value="5" required>
+                                    <label for="inlineStar5" title="5 stars - Excellent">★</label>
+                                    <input type="radio" id="inlineStar4" name="rating" value="4">
+                                    <label for="inlineStar4" title="4 stars - Very Good">★</label>
+                                    <input type="radio" id="inlineStar3" name="rating" value="3">
+                                    <label for="inlineStar3" title="3 stars - Good">★</label>
+                                    <input type="radio" id="inlineStar2" name="rating" value="2">
+                                    <label for="inlineStar2" title="2 stars - Fair">★</label>
+                                    <input type="radio" id="inlineStar1" name="rating" value="1">
+                                    <label for="inlineStar1" title="1 star - Poor">★</label>
+                                </div>
+                            </div>
+
+                            <div class="review-section-inline">
+                                <label for="inlineReview">
+                                    Please tell us your reasons for giving this score here..
+                                </label>
+                                <textarea 
+                                    id="inlineReview" 
+                                    name="review" 
+                                    class="review-textarea-inline"
+                                    placeholder="Share your experience with this faculty member... (max 500 characters)"
+                                    maxlength="500" 
+                                    required
+                                ></textarea>
+                                <div class="char-counter-inline" id="inlineCharCounter">0/500 characters</div>
+                            </div>
+
+                            <button type="submit" id="inlineSubmitBtn" class="submit-btn-inline">
+                                <i class="fas fa-paper-plane"></i>
+                                Send Feedback
+                            </button>
+                        </form>
+
+                        <!-- Disclaimer -->
+                        <div class="disclaimer-inline">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <div>
+                                <strong>Important:</strong> Please maintain respectful language in your reviews. 
+                                Any use of abusive or inappropriate content will result in account suspension.
+                            </div>
+                        </div>
+
+                        <!-- Message Display -->
+                        <div id="inlineMessage" class="message-inline" style="display: none;"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -681,7 +2775,7 @@
                             showAllReviews();
                             break;
                         case 'add-review':
-                            window.location.href = 'add-contribution.html';
+                            showAddReviewSection();
                             break;
                     }
                 });
@@ -691,6 +2785,7 @@
         // Show dashboard view
         function showDashboard() {
             document.getElementById('searchResults').style.display = 'none';
+            document.getElementById('addReviewSection').style.display = 'none';
             document.getElementById('mainReviewsContainer').style.display = 'block';
             document.getElementById('reviewsContainerTitle').textContent = 'Latest Reviews';
             document.getElementById('reviewsContainerSubtitle').textContent = 'Recent faculty reviews from the community';
@@ -701,12 +2796,13 @@
         async function showYourReviews() {
             const token = localStorage.getItem('token');
             document.getElementById('searchResults').style.display = 'none';
+            document.getElementById('addReviewSection').style.display = 'none';
             document.getElementById('mainReviewsContainer').style.display = 'block';
             document.getElementById('reviewsContainerTitle').textContent = 'Your Reviews';
             document.getElementById('reviewsContainerSubtitle').textContent = 'All your faculty reviews';
             
             const container = document.getElementById('mainReviewsContent');
-            container.innerHTML = '<div class="no-results"><div class="loading-spinner"></div><div>Loading your reviews...</div></div>';
+            container.innerHTML = '<div class="no-results"><div class="no-results-icon"><i class="fas fa-spinner fa-spin"></i></div><div>Loading your reviews...</div></div>';
             
             try {
                 const response = await fetch('https://review-teachers.onrender.com/api/contributions/me', {
@@ -718,7 +2814,7 @@
                     if (yourReviews.length === 0) {
                         container.innerHTML = `
                             <div class="no-results">
-                                <div class="no-results-icon">✍️</div>
+                                <div class="no-results-icon"><i class="fas fa-edit"></i></div>
                                 <div>You haven't written any reviews yet</div>
                                 <div style="font-size: 14px; margin-top: 10px; opacity: 0.7;">Start by adding your first review!</div>
                             </div>
@@ -741,14 +2837,17 @@
                                     </div>
                                 </div>
                                 <div class="review-text">${review.review}</div>
-                                <div class="faculty-tag">${review.facultyName} (${review.facultyEmail})</div>
+                                <div class="faculty-tag">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                    ${review.facultyName} (${review.facultyEmail})
+                                </div>
                             </div>
                         `).join('');
                     }
                 } else {
                     container.innerHTML = `
                         <div class="no-results">
-                            <div class="no-results-icon">❌</div>
+                            <div class="no-results-icon"><i class="fas fa-exclamation-triangle"></i></div>
                             <div>Failed to load your reviews</div>
                             <div style="font-size: 14px; margin-top: 10px; opacity: 0.7;">Please try refreshing the page</div>
                         </div>
@@ -758,7 +2857,7 @@
                 console.error('Error loading your reviews:', error);
                 container.innerHTML = `
                     <div class="no-results">
-                        <div class="no-results-icon">❌</div>
+                        <div class="no-results-icon"><i class="fas fa-exclamation-triangle"></i></div>
                         <div>Failed to load your reviews</div>
                         <div style="font-size: 14px; margin-top: 10px; opacity: 0.7;">Please check your connection and try again</div>
                     </div>
@@ -769,12 +2868,23 @@
         // Function to show all reviews
         async function showAllReviews() {
             document.getElementById('mainReviewsContainer').style.display = 'none';
+            document.getElementById('addReviewSection').style.display = 'none';
             const searchResultsDiv = document.getElementById('searchResults');
             const searchResultsContent = document.getElementById('searchResultsContent');
             
             // Show loading state with spinner
             searchResultsDiv.style.display = 'block';
-            searchResultsContent.innerHTML = '<div class="no-results"><div class="loading-spinner"></div><div>Loading all reviews...</div></div>';
+            
+            // Update header to match "Your Reviews" style
+            const headerDiv = searchResultsDiv.querySelector('.reviews-header');
+            headerDiv.innerHTML = `
+                <div>
+                    <div class="reviews-title">All Reviews</div>
+                    <div class="reviews-subtitle">Community faculty reviews</div>
+                </div>
+            `;
+            
+            searchResultsContent.innerHTML = '<div class="no-results"><div class="no-results-icon"><i class="fas fa-spinner fa-spin"></i></div><div>Loading all reviews...</div></div>';
             
             try {
                 const response = await fetch('https://review-teachers.onrender.com/api/contributions/search?query=');
@@ -782,16 +2892,18 @@
                 
                 if (response.ok && data.allReviews) {
                     const reviewCount = data.allReviews.length;
-                    searchResultsContent.innerHTML = `
-                        <div class="faculty-profile-header">
-                            <div class="faculty-name">All Faculty Reviews</div>
-                            <div class="faculty-email">Community Reviews Database</div>
-                            <div class="faculty-rating">
-                                <span class="rating-text">Total Reviews: ${reviewCount}</span>
-                                <span class="review-count-badge">${reviewCount} reviews</span>
+                    
+                    if (reviewCount === 0) {
+                        searchResultsContent.innerHTML = `
+                            <div class="no-results">
+                                <div class="no-results-icon"><i class="fas fa-book-open"></i></div>
+                                <div>No reviews available yet</div>
+                                <div style="font-size: 14px; margin-top: 10px; opacity: 0.7;">Be the first to add a review!</div>
                             </div>
-                        </div>
-                        ${data.allReviews.map(review => `
+                        `;
+                    } else {
+                        // Simple review list without faculty profile header
+                        searchResultsContent.innerHTML = data.allReviews.map(review => `
                             <div class="review-item">
                                 <div class="review-header">
                                     <div class="reviewer-avatar">${review.reviewerName.charAt(0).toUpperCase()}</div>
@@ -808,16 +2920,29 @@
                                     </div>
                                 </div>
                                 <div class="review-text">${review.review}</div>
-                                <div class="faculty-tag">${review.facultyName} (${review.facultyEmail})</div>
+                                <div class="faculty-tag">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                    ${review.facultyName} (${review.facultyEmail})
+                                </div>
                             </div>
-                        `).join('')}
-                    `;
+                        `).join('');
+                    }
                 } else {
-                    searchResultsContent.innerHTML = '<div class="no-results"><div class="no-results-icon">📝</div><div>No reviews found</div></div>';
+                    searchResultsContent.innerHTML = `
+                        <div class="no-results">
+                            <div class="no-results-icon"><i class="fas fa-file-alt"></i></div>
+                            <div>No reviews found</div>
+                        </div>
+                    `;
                 }
             } catch (error) {
                 console.error('Error loading all reviews:', error);
-                searchResultsContent.innerHTML = '<div class="no-results"><div class="no-results-icon">⚠️</div><div>Failed to load reviews</div></div>';
+                searchResultsContent.innerHTML = `
+                    <div class="no-results">
+                        <div class="no-results-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                        <div>Failed to load reviews</div>
+                    </div>
+                `;
             }
         }
 
@@ -832,10 +2957,11 @@
                 return;
             }
             
-            // Hide main container and show search results
+            // Hide all containers and show search results
             document.getElementById('mainReviewsContainer').style.display = 'none';
+            document.getElementById('addReviewSection').style.display = 'none';
             searchResultsDiv.style.display = 'block';
-            searchResultsContent.innerHTML = '<div class="no-results"><div class="loading-spinner"></div><div>Searching for faculty...</div></div>';
+            searchResultsContent.innerHTML = '<div class="no-results"><div class="no-results-icon"><i class="fas fa-spinner fa-spin"></i></div><div>Searching for faculty...</div></div>';
             
             try {
                 const response = await fetch(`https://review-teachers.onrender.com/api/contributions/search?query=${encodeURIComponent(query)}`);
@@ -871,14 +2997,17 @@
                                     </div>
                                 </div>
                                 <div class="review-text">${review.review}</div>
-                                <div class="faculty-tag">${data.facultyName}</div>
+                                <div class="faculty-tag">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                    ${data.facultyName}
+                                </div>
                             </div>
                         `).join('')}
                     `;
                 } else {
                     searchResultsContent.innerHTML = `
                         <div class="no-results">
-                            <div class="no-results-icon">🔍</div>
+                            <div class="no-results-icon"><i class="fas fa-search"></i></div>
                             <div>No faculty found matching "${query}"</div>
                             <div style="font-size: 14px; margin-top: 10px; opacity: 0.7;">Try searching with a different name or email</div>
                         </div>
@@ -888,11 +3017,18 @@
                 console.error('Error during search:', error);
                 searchResultsContent.innerHTML = `
                     <div class="no-results">
-                        <div class="no-results-icon">❌</div>
+                        <div class="no-results-icon"><i class="fas fa-exclamation-triangle"></i></div>
                         <div>Search failed</div>
                         <div style="font-size: 14px; margin-top: 10px; opacity: 0.7;">Please try again later</div>
                     </div>
                 `;
+            }
+        });
+
+        // Enhanced search on Enter key
+        document.getElementById('teacherSearchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('teacherSearchButton').click();
             }
         });
 
@@ -944,7 +3080,7 @@
                 // Show error state
                 document.getElementById('mainReviewsContent').innerHTML = `
                     <div class="no-results">
-                        <div class="no-results-icon"></div>
+                        <div class="no-results-icon"><i class="fas fa-exclamation-triangle"></i></div>
                         <div>Failed to load dashboard data</div>
                     </div>
                 `;
@@ -958,7 +3094,7 @@
             if (!reviews || reviews.length === 0) {
                 container.innerHTML = `
                     <div class="no-results">
-                        <div class="no-results-icon">📚</div>
+                        <div class="no-results-icon"><i class="fas fa-book-open"></i></div>
                         <div>No reviews available yet</div>
                         <div style="font-size: 14px; margin-top: 10px; opacity: 0.7;">Be the first to add a review!</div>
                     </div>
@@ -988,7 +3124,10 @@
                         </div>
                     </div>
                     <div class="review-text">${review.review}</div>
-                    <div class="faculty-tag">${review.facultyName}</div>
+                    <div class="faculty-tag">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        ${review.facultyName}
+                    </div>
                 </div>
             `).join('');
         }
@@ -1009,6 +3148,205 @@
 
         // Call initialization
         initializeDashboard();
+
+        // Show add review section
+        function showAddReviewSection() {
+            document.getElementById('searchResults').style.display = 'none';
+            document.getElementById('mainReviewsContainer').style.display = 'none';
+            document.getElementById('addReviewSection').style.display = 'block';
+            
+            // Initialize form if needed
+            initializeInlineForm();
+        }
+
+        // Update the initializeInlineForm function
+        function initializeInlineForm() {
+            const form = document.getElementById('inlineContributionForm');
+            const review = document.getElementById('inlineReview');
+            const submitBtn = document.getElementById('inlineSubmitBtn');
+            const charCounter = document.getElementById('inlineCharCounter');
+            const messageBox = document.getElementById('inlineMessage');
+            
+            // Remove existing listeners
+            const newForm = form.cloneNode(true);
+            form.parentNode.replaceChild(newForm, form);
+            
+            // Character counter and validation
+            function updateValidationUI() {
+                const length = document.getElementById('inlineReview').value.length;
+                const charCounterEl = document.getElementById('inlineCharCounter');
+                const submitBtnEl = document.getElementById('inlineSubmitBtn');
+                const messageBoxEl = document.getElementById('inlineMessage');
+                
+                charCounterEl.textContent = `${length}/500 characters`;
+                
+                charCounterEl.className = 'char-counter-inline';
+                if (length > 400) {
+                    charCounterEl.classList.add('warning');
+                }
+                if (length > 450) {
+                    charCounterEl.classList.remove('warning');
+                    charCounterEl.classList.add('danger');
+                }
+                
+                // Check for abusive words
+                const found = findAbusiveWordsInText(document.getElementById('inlineReview').value || '');
+                if (found.length) {
+                    submitBtnEl.disabled = true;
+                    messageBoxEl.innerHTML = `<i class="fas fa-exclamation-circle"></i> ❌ Forbidden word(s) found: ${found.join(', ')}`;
+                    messageBoxEl.className = 'message-inline error';
+                    messageBoxEl.style.display = 'flex';
+                } else {
+                    submitBtnEl.disabled = false;
+                    messageBoxEl.style.display = 'none';
+                }
+            }
+
+            // Add event listeners
+            document.getElementById('inlineReview').addEventListener('input', updateValidationUI);
+            
+            // Form submission with bad word check
+            document.getElementById('inlineContributionForm').addEventListener('submit', async (event) => {
+                const reviewText = document.getElementById('inlineReview').value;
+                const found = findAbusiveWordsInText(reviewText || '');
+                
+                if (found.length) {
+                    event.preventDefault();
+                    document.getElementById('inlineSubmitBtn').disabled = true;
+                    showInlineMessage(`❌ Forbidden word(s) found: ${found.join(', ')}`, 'error', 'exclamation-circle');
+                    return false;
+                }
+                
+                event.preventDefault();
+                
+                const formData = new FormData(event.target);
+                const data = {
+                    facultyName: formData.get('facultyName'),
+                    facultyEmail: formData.get('facultyEmail'),
+                    rating: parseInt(formData.get('rating')),
+                    review: formData.get('review')
+                };
+                
+                // Show loading state
+                document.getElementById('inlineSubmitBtn').innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+                document.getElementById('inlineSubmitBtn').disabled = true;
+                
+                try {
+                    const response = await fetch('https://review-teachers.onrender.com/api/contributions', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        },
+                        body: JSON.stringify(data)
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (response.ok) {
+                        showInlineMessage(result.message || 'Review submitted successfully!', 'ok', 'check-circle');
+                        event.target.reset();
+                        updateValidationUI();
+                        
+                        // Refresh dashboard stats
+                        setTimeout(() => {
+                            loadDashboardStats();
+                            showDashboard(); // Return to dashboard view
+                        }, 2000);
+                    } else {
+                        showInlineMessage(result.message || 'Submission failed.', 'error', 'exclamation-circle');
+                    }
+                } catch (error) {
+                    console.error('Error submitting review:', error);
+                    showInlineMessage('An error occurred while submitting review.', 'error', 'exclamation-circle');
+                }
+                
+                // Reset button
+                document.getElementById('inlineSubmitBtn').innerHTML = '<i class="fas fa-paper-plane"></i> Send Feedback';
+                document.getElementById('inlineSubmitBtn').disabled = false;
+            });
+            
+            // Initialize validation
+            updateValidationUI();
+        }
+
+        // Show inline message
+        function showInlineMessage(text, type, icon) {
+            const messageBox = document.getElementById('inlineMessage');
+            messageBox.innerHTML = `<i class="fas fa-${icon}"></i> ${text}`;
+            messageBox.className = `message-inline ${type}`;
+            messageBox.style.display = 'flex';
+            
+            // Auto hide success messages
+            if (type === 'ok') {
+                setTimeout(() => {
+                    messageBox.style.display = 'none';
+                }, 3000);
+            }
+        }
+
+        // Add logout functionality specifically for dashboard
+        document.getElementById('logoutButton').addEventListener('click', function() {
+            // Clear stored data
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            
+            // Show confirmation message
+            alert('You have been logged out successfully.');
+            
+            // Redirect to login page
+            window.location.href = 'login.html';
+        });
+
+        // Bad word filter implementation for dashboard
+        let abusiveWords = [];
+
+        // Load bad words on page load
+        (function() {
+          fetch('badword.txt')
+            .then(response => response.text())
+            .then(text => {
+              abusiveWords = text.split(/\r?\n/).map(w => w.trim().toLowerCase()).filter(Boolean);
+              console.log("Loaded bad words:", abusiveWords.length);
+            })
+            .catch(err => {
+              console.error("Could not load badword.txt", err);
+            });
+
+          function escapeRegex(s) {
+            return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          }
+
+          function findAbusiveWordsInText(text) {
+            if (!text || !abusiveWords.length) return [];
+            const found = new Set();
+            const lowerText = text.toLowerCase();
+            const tokens = (lowerText.match(/[a-z0-9]+/g) || []);
+
+            for (const raw of abusiveWords) {
+              const w = String(raw).trim();
+              if (!w) continue;
+              const wLower = w.toLowerCase();
+
+              if (/\s/.test(wLower)) {
+                // Multi-word phrase
+                const regex = new RegExp('\\b' + escapeRegex(wLower) + '\\b', 'i');
+                if (regex.test(text)) {
+                  found.add(w);
+                }
+              } else {
+                // Single word - check exact matches in tokens
+                if (tokens.includes(wLower)) {
+                  found.add(w);
+                }
+              }
+            }
+            return Array.from(found);
+          }
+
+          // Make functions globally available
+          window.findAbusiveWordsInText = findAbusiveWordsInText;
+        })();
     </script>
 </body>
 </html>
